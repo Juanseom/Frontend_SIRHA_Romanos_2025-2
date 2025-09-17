@@ -7,7 +7,7 @@ En este repositorio se manejara todo el Frontend del proyecto inicial "SIRHA" pa
 
 ## Estrategia de Ramas (Git Flow) 
 
-![GitFlow.jpg](imagenes/GitFlow.jpg)
+![GitFlow.jpg](docs/imagenes/GitFlow.jpg)
 
 ## Ramas y propósito
 - Manejaremos GitFlow, el modelo de ramificación para el control de versiones de Git
