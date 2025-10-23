@@ -1,21 +1,25 @@
+import { useNavigate } from 'react-router-dom'
 import sirhaLogo from '../assets/images/sirhaBlanco.png'
 
-const Header = ({ onMenuClick }) => {
+const Header = ({ homeRoute = '/' }) => {
+  const navigate = useNavigate()
+
   return (
     <header className="w-full bg-[#b50e11] px-8 py-4 flex items-center justify-between">
-      {/* Logo */}
-      <div className="flex items-center">
+      {/* Logo - clickeable para ir a home del flujo actual */}
+      <button onClick={() => navigate(homeRoute)} className="flex items-center">
         <img 
           src={sirhaLogo} 
           alt="SIRHA Logo" 
           className="h-14 w-auto object-contain"
         />
-      </div>
+      </button>
 
       {/* Navigation Icons */}
       <nav className="flex items-center gap-6">
         {/* Home Icon */}
         <button 
+          onClick={() => navigate(homeRoute)}
           className="text-white hover:text-gray-200 transition-colors"
           aria-label="Home"
         >
