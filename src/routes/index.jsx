@@ -1,8 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom'
-import DeanHome from './DeanHome'
-import GestionarSolicitudes from './GestionarSolicitudes'
-import Periodos from './Periodos'
-import MonitorearGrupos from './MonitorearGrupos'
+import DeanHome from './dean/DeanHome'
+import GestionarSolicitudes from './dean/GestionarSolicitudes'
+import Periodos from './dean/Periodos'
+import MonitorearGrupos from './dean/MonitorearGrupos'
 
 export const router = createBrowserRouter([
   {

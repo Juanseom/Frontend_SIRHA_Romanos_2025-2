@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Layout from '../components/Layout'
-import StudentInfoModal from '../components/StudentInfoModal'
+import Layout from '../../components/common/Layout'
+import StudentInfoModal from '../../components/dean/StudentInfoModal'
 
 const GestionarSolicitudes = () => {
   const [sortBy, setSortBy] = useState('fecha')
