@@ -1,14 +1,18 @@
-import Header from './header.jsx';
+import { useState } from 'react'
+import Header from './header.jsx'
+import Sidebar from './Sidebar.jsx'
 
-const Layout = ({ children, homeRoute = '/' }) => {
+const Layout = ({ children, homeRoute = '/', role = 'dean' }) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white">
       <Header homeRoute={homeRoute} />
       
-      {/* Área de contenido con menú hamburguesa */}
       <div className="flex">
-        {/* Menú Hamburguesa - Lado izquierdo */}
+        {/* Menú Hamburguesa */}
         <button 
+          onClick={() => setSidebarOpen(true)}
           className="fixed top-[120px] left-6 text-black hover:text-gray-600 transition-colors z-10"
           aria-label="Menu"
         >
@@ -17,13 +21,20 @@ const Layout = ({ children, homeRoute = '/' }) => {
           </svg>
         </button>
 
+        {/* Sidebar */}
+        <Sidebar 
+          isOpen={sidebarOpen} 
+          onClose={() => setSidebarOpen(false)}
+          role={role}
+        />
+
         {/* Contenido principal */}
         <main className="flex-1 p-8 pl-24">
           {children}
         </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

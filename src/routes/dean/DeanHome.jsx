@@ -10,7 +10,7 @@ const DeanHome = () => {
   const navigate = useNavigate()
 
   return (
-    <Layout homeRoute="/dean-home">
+    <Layout homeRoute="/dean-home" role="dean">
       {/* Contenedor con padding para alinear todo */}
       <div className="pl-16">
         <h1 className="text-3xl font-bold mb-4">Decanatura</h1>

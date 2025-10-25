@@ -176,7 +176,7 @@ const MonitorearGrupos = () => {
   }
 
   return (
-    <Layout homeRoute="/dean-home">
+    <Layout homeRoute="/dean-home" role="dean">
       <div className="pl-16">
         <h1 className="text-3xl font-bold mb-4">Monitoreo de Capacidad de Grupos</h1>
         

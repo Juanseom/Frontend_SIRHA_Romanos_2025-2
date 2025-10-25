@@ -47,7 +47,7 @@ const Periodos = () => {
   }
 
   return (
-    <Layout homeRoute="/dean-home">
+    <Layout homeRoute="/dean-home" role="dean">
       <div className="pl-16">
         <h1 className="text-3xl font-bold mb-4">Periodos Habilitados</h1>
         <div className="w-full max-w-[1200px] h-1 bg-black mb-8"></div>
