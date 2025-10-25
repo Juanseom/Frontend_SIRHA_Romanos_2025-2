@@ -138,9 +138,12 @@ const GestionarSolicitudes = () => {
 
   return (
     <Layout homeRoute="/dean-home">
-      <div className="pl-16">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-3xl font-bold">Gestión de Solicitudes</h1>
+      {/* Responsive padding: menos en móvil, más en desktop */}
+      <div className="pl-4 sm:pl-8 md:pl-12 lg:pl-16">
+        
+        {/* Header responsive: stack vertical en móvil, horizontal en desktop */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold">Gestión de Solicitudes</h1>
           
           {/* Filtro de ordenamiento */}
           <div className="flex items-center gap-2">
@@ -157,30 +160,33 @@ const GestionarSolicitudes = () => {
           </div>
         </div>
 
-        <div className="w-full max-w-[1200px] h-1 bg-black mb-8"></div>
+        {/* Línea responsive */}
+        <div className="w-full max-w-full lg:max-w-[1200px] h-1 bg-black mb-6 sm:mb-8"></div>
 
         {/* Tabla de solicitudes */}
         <div className="space-y-3">
-          {/* Header */}
-          <div className="grid grid-cols-[2fr_3fr_1fr] gap-4 px-4 text-sm font-semibold text-gray-600">
+          
+          {/* Header - oculto en móvil, visible en tablet+ */}
+          <div className="hidden md:grid grid-cols-[2fr_3fr_1fr] gap-4 px-4 text-sm font-semibold text-gray-600">
             <div>Nombre del Estudiante</div>
             <div>Título de la solicitud</div>
             <div>Prioridad</div>
           </div>
 
-          {/* Solicitudes */}
+          {/* Solicitudes - responsive layout */}
           {getSortedSolicitudes().map((solicitud) => (
             <button
               key={solicitud.id}
               onClick={() => handleSolicitudClick(solicitud)}
-              className="w-full bg-white border border-gray-300 rounded-lg p-4 hover:bg-gray-50 transition-colors shadow-sm"
+              className="w-full bg-white border border-gray-300 rounded-lg p-3 sm:p-4 hover:bg-gray-50 transition-colors shadow-sm"
             >
-              <div className="grid grid-cols-[2fr_3fr_1fr] gap-4 items-center text-left">
-                <div className="font-medium">{solicitud.nombre}</div>
-                <div className="text-sm text-gray-700">{solicitud.titulo}</div>
+              {/* Stack vertical en móvil, grid en tablet+ */}
+              <div className="flex flex-col md:grid md:grid-cols-[2fr_3fr_1fr] gap-2 md:gap-4 items-start md:items-center text-left">
+                <div className="font-medium text-sm sm:text-base">{solicitud.nombre}</div>
+                <div className="text-xs sm:text-sm text-gray-700">{solicitud.titulo}</div>
                 <div className="flex items-center gap-2">
                   <div className={`w-4 h-4 rounded-full ${prioridadColor(solicitud.prioridad)}`}></div>
-                  <span className="text-sm">{solicitud.prioridad}</span>
+                  <span className="text-xs sm:text-sm">{solicitud.prioridad}</span>
                 </div>
               </div>
             </button>

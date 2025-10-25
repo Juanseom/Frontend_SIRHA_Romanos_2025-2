@@ -10,20 +10,20 @@ const DeanHome = () => {
 
   return (
     <Layout homeRoute="/dean-home">
-      {/* Contenedor con padding para alinear todo */}
-      <div className="pl-16">
-        <h1 className="text-3xl font-bold mb-4">Decanatura</h1>
-        <div className="w-full max-w-[1200px] h-1 bg-black mb-20"></div>
+      {/* Responsive padding */}
+      <div className="pl-4 sm:pl-8 md:pl-12 lg:pl-16">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-4">Decanatura</h1>
+        <div className="w-full max-w-full lg:max-w-[1200px] h-1 bg-black mb-12 sm:mb-16 md:mb-20"></div>
 
-        {/* Cards alineadas con el texto */}
-        <div className="flex gap-8 justify-start items-start">
+        {/* Grid responsive - 1 columna móvil, 2 en tablet, 3 en desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           <Card 
             title="Gestionar Solicitudes"
             icon={
               <img 
                 src={gestionarSolicitudes} 
                 alt="Gestionar Solicitudes" 
-                className="w-40 h-40 object-contain"
+                className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 object-contain"
               />
             }
             onClick={() => navigate('/dean/gestionar-solicitudes')}
@@ -35,7 +35,7 @@ const DeanHome = () => {
               <img 
                 src={periodos} 
                 alt="Periodos" 
-                className="w-44 h-44 object-contain"
+                className="w-36 h-36 sm:w-40 sm:h-40 md:w-44 md:h-44 object-contain"
               />
             }
             onClick={() => navigate('/dean/periodos')}
@@ -47,7 +47,7 @@ const DeanHome = () => {
               <img 
                 src={monitorearGrupos} 
                 alt="Monitorear Grupos" 
-                className="w-40 h-40 object-contain"
+                className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 object-contain"
               />
             }
             onClick={() => navigate('/dean/monitorear-grupos')}

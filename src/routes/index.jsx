@@ -1,7 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom'
-import DeanHome from './DeanHome'
-import GestionarSolicitudes from './GestionarSolicitudes'
-import Periodos from './Periodos'
+import { createBrowserRouter } from 'react-router-dom';
+import GestionarSolicitudes from './GestionarSolicitudes.jsx';
+import DeanHome from './DeanHome.jsx';
+import Periodos from './Periodos.jsx';
 
 export const router = createBrowserRouter([
   {

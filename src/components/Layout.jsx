@@ -1,15 +1,18 @@
-import Header from './header.jsx';
+import Header from './Header.jsx'
+import { useState } from 'react'
 
 const Layout = ({ children, homeRoute = '/' }) => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <div className="min-h-screen bg-white">
       <Header homeRoute={homeRoute} />
       
-      {/* Área de contenido con menú hamburguesa */}
       <div className="flex">
-        {/* Menú Hamburguesa - Lado izquierdo */}
+        {/* Menú Hamburguesa - Responsive */}
         <button 
-          className="fixed top-[120px] left-6 text-black hover:text-gray-600 transition-colors z-10"
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="fixed top-[120px] left-6 text-black hover:text-gray-600 transition-colors z-10 lg:block"
           aria-label="Menu"
         >
           <svg className="w-10 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -17,13 +20,13 @@ const Layout = ({ children, homeRoute = '/' }) => {
           </svg>
         </button>
 
-        {/* Contenido principal */}
-        <main className="flex-1 p-8 pl-24">
+        {/* Contenido principal - Responsive padding */}
+        <main className="flex-1 p-4 sm:p-6 md:p-8 pl-16 sm:pl-20 md:pl-24">
           {children}
         </main>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
