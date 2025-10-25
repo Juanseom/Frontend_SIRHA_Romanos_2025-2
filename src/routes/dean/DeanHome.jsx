@@ -1,9 +1,10 @@
 import { useNavigate } from 'react-router-dom'
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import gestionarSolicitudes from '../assets/icons/gestionarSolicitudes.png'
-import monitorearGrupos from '../assets/icons/monitorearGrupos.png'
-import periodos from '../assets/icons/periodos.png'
+import Layout from '../../components/common/Layout'
+import Card from '../../components/common/Card'
+
+import gestionarSolicitudes from '../../assets/icons/gestionarSolicitudes.png'
+import monitorearGrupos from '../../assets/icons/monitorearGrupos.png'
+import periodos from '../../assets/icons/periodos.png'
 
 const DeanHome = () => {
   const navigate = useNavigate()

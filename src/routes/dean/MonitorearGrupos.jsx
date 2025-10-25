@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import Layout from '../components/Layout'
-import ProgressBar from '../components/ProgressBar'
-import GroupInfoModal from '../components/GroupInfoModal'
-import ManageGroupModal from '../components/ManageGroupModal'
+import Layout from '../../components/common/Layout'
+import ProgressBar from '../../components/common/ProgressBar'
+import GroupInfoModal from '../../components/dean/GroupInfoModal'
+import ManageGroupModal from '../../components/dean/ManageGroupModal'
 
 const MonitorearGrupos = () => {
   const [activeTab, setActiveTab] = useState('disponibles') // 'disponibles' o 'llenos'

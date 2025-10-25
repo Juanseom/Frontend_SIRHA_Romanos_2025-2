@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import sirhaLogo from '../assets/images/sirhaBlanco.png'
+import sirhaLogo from '../../assets/images/sirhaBlanco.png'
 
 const Header = ({ homeRoute = '/' }) => {
   const navigate = useNavigate()

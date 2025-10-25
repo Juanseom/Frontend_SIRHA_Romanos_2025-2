@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Layout from '../components/Layout'
-import AddPeriodoModal from '../components/AddPeriodoModal'
+import Layout from '../../components/common/Layout'
+import AddPeriodoModal from '../../components/dean/AddPeriodoModal'
 
 const Periodos = () => {
   const [periodos, setPeriodos] = useState([
