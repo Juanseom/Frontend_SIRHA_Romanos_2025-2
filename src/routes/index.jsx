@@ -9,6 +9,7 @@ import MonitorearGrupos from './dean/MonitorearGrupos'
 import StudentHome from './student/StudentHome'
 import MisSolicitudes from './student/MisSolicitudes'
 import MisHorarios from './student/MisHorarios'
+import SemaforoAcademico from './student/SemaforoAcademico'
 
 // Admin routes
 import AdminHome from './admin/AdminHome'
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
   {
     path: '/student/mis-horarios',
     element: <MisHorarios />,
+  },
+  {
+    path: '/student/semaforo',
+    element: <SemaforoAcademico />,
   },
 
   // Admin routes
