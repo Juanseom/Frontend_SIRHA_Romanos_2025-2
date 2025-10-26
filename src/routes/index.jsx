@@ -1,14 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom'
-
 // Dean routes
 import DeanHome from './dean/DeanHome'
 import GestionarSolicitudes from './dean/GestionarSolicitudes'
 import Periodos from './dean/Periodos'
 import MonitorearGrupos from './dean/MonitorearGrupos'
-import MisSolicitudes from './student/MisSolicitudes'
 
 // Student routes
 import StudentHome from './student/StudentHome'
+import MisSolicitudes from './student/MisSolicitudes'
+import MisHorarios from './student/MisHorarios'
 
 // Admin routes
 import AdminHome from './admin/AdminHome'
@@ -40,6 +40,10 @@ export const router = createBrowserRouter([
   {
     path: '/student/mis-solicitudes',
     element: <MisSolicitudes />,
+  },
+  {
+    path: '/student/mis-horarios',
+    element: <MisHorarios />,
   },
 
   // Admin routes
