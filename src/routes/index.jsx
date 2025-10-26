@@ -5,6 +5,7 @@ import DeanHome from './dean/DeanHome'
 import GestionarSolicitudes from './dean/GestionarSolicitudes'
 import Periodos from './dean/Periodos'
 import MonitorearGrupos from './dean/MonitorearGrupos'
+import MisSolicitudes from './student/MisSolicitudes'
 
 // Student routes
 import StudentHome from './student/StudentHome'
@@ -36,10 +37,10 @@ export const router = createBrowserRouter([
     path: '/student-home',
     element: <StudentHome />,
   },
-  // {
-  //   path: '/student/mis-solicitudes',
-  //   element: <MisSolicitudes />,
-  // },
+  {
+    path: '/student/mis-solicitudes',
+    element: <MisSolicitudes />,
+  },
 
   // Admin routes
   {
