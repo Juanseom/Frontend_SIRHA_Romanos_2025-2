@@ -2,16 +2,18 @@ import { useState } from 'react'
 import Layout from '../../components/common/Layout'
 import SolicitudCard from '../../components/student/SolicitudCard'
 import SolicitudDetalleModal from '../../components/student/SolicitudDetalleModal'
+import CrearSolicitudModal from '../../components/student/CrearSolicitudModal'
 
 const MisSolicitudes = () => {
   const [activeTab, setActiveTab] = useState('todas')
   const [periodoSeleccionado, setPeriodoSeleccionado] = useState('2025-2')
   const [selectedSolicitud, setSelectedSolicitud] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isCrearModalOpen, setIsCrearModalOpen] = useState(false)
 
   // Datos de ejemplo (vendrán del backend)
   // Datos de ejemplo (vendrán del backend)
-const solicitudes = [
+const [solicitudes, setSolicitudes] = useState([
   {
     id: 1,
     tipo: 'Cambio Grupo',
@@ -98,7 +100,7 @@ const solicitudes = [
     descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
     respuesta: ''
   }
-]
+])
 
   // Filtrar según la pestaña activa
   const solicitudesFiltradas = solicitudes.filter(sol => {
@@ -116,9 +118,13 @@ const solicitudes = [
   }
 
   const handleNuevaSolicitud = () => {
-    alert('Funcionalidad de nueva solicitud - Por implementar')
-    // navigate('/student/nueva-solicitud')
-  }
+  setIsCrearModalOpen(true)
+    }
+
+    const handleCrearSolicitud = (nuevaSolicitud) => {
+    setSolicitudes([nuevaSolicitud, ...solicitudes])
+    alert('Solicitud creada exitosamente')
+    }
 
   const tabs = [
     { id: 'todas', label: 'Todas' },
@@ -203,6 +209,12 @@ const solicitudes = [
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         solicitud={selectedSolicitud}
+      />
+      {/* Modal de crear solicitud - NUEVO */}
+      <CrearSolicitudModal
+        isOpen={isCrearModalOpen}
+        onClose={() => setIsCrearModalOpen(false)}
+        onCreate={handleCrearSolicitud}
       />
     </Layout>
   )
