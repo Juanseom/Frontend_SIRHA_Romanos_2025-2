@@ -105,6 +105,17 @@ Las vistas se agrupan por tipo de usuario:
 
 ### 🔧 Instalación de dependencias
 ```bash
-`npm install`
+npm install
 ```
 
+### 🚀 Modo desarrollo
+```bash
+npm run dev
+```
+> El servidor local se ejecutará normalmente en: 
+`http://localhost:5173/`
+
+### 🔧 Instalación de dependencias
+```bash
+npm install
+```
