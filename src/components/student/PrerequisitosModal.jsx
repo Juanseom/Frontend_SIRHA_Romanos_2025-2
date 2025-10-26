@@ -70,7 +70,7 @@ const PrerequisitosModal = ({ isOpen, onClose, materia }) => {
               </div>
             ) : (
               <div className="text-gray-500 italic bg-gray-50 rounded-lg px-4 py-3 text-center">
-                No requiere prerequisitos
+                No tiene prerequisitos
               </div>
             )}
           </div>
