@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Layout from '../components/Layout'
-import StudentInfoModal from '../components/StudentInfoModal'
+import Layout from '../../components/common/Layout'
+import StudentInfoModal from '../../components/dean/StudentInfoModal'
 
 const GestionarSolicitudes = () => {
   const [sortBy, setSortBy] = useState('fecha')
@@ -137,7 +137,7 @@ const GestionarSolicitudes = () => {
   }
 
   return (
-    <Layout homeRoute="/dean-home">
+    <Layout homeRoute="/dean-home" role="dean">
       <div className="pl-16">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-3xl font-bold">Gestión de Solicitudes</h1>
