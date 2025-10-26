@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Header from './header.jsx'
+import Header from './Header.jsx'
 import Sidebar from './Sidebar.jsx'
 
 const Layout = ({ children, homeRoute = '/', role = 'dean' }) => {
