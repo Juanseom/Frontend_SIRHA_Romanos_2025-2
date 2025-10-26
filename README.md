@@ -112,10 +112,66 @@ npm install
 ```bash
 npm run dev
 ```
-> El servidor local se ejecutará normalmente en: 
+> 👉 El servidor local se ejecutará normalmente en: 
 http://localhost:5173/
 
-### 🔧 Instalación de dependencias
+### 🏗️ Compilación para producción
 ```bash
-npm install
+npm run build
 ```
+> Los archivos generados se almacenan en la carpeta `/dist`.
+
+---
+
+## 🌍 Despliegue
+
+### **Local**
+- URL: [http://localhost:5173](http://localhost:5173)
+
+### **Servidor**
+- URL: *pendiente de despliegue*
+- Configuración futura:  
+  - Integración con backend mediante variables de entorno (`.env`)  
+  - Configuración del dominio y entorno de producción  
+
+---
+
+## 🌿 Estrategia de versionamiento y ramas
+
+El proyecto sigue la misma **estrategia GitFlow** definida en el backend.
+
+### 🌱 Ramas principales
+| Rama | Propósito |
+|------|------------|
+| `main` | Versión estable y lista para producción. |
+| `develop` | Integración continua de nuevas funcionalidades. |
+| `feature/*` | Desarrollo de nuevas características. |
+| `release/*` | Versión previa a producción (testing y revisión). |
+| `hotfix/*` | Corrección rápida de errores críticos. |
+
+---
+
+## ✅ Convención de Commits
+
+Las convenciones para crear los commits son las siguientes:
+
+- `feat`: Nueva funcionalidad
+- `fix`: Corrección de errores
+- `docs`: Cambios en documentación
+- `style`: Cambios de formato/estilo (espacios, punto y coma, etc.)
+- `refactor`: Refactorización de código sin cambios funcionales
+- `test`: Agregar o modificar tests
+- `chore`: Tareas de mantenimiento, configuración, dependencias
+
+---
+## 🏗️ Arquitectura visual
+
+Los diseños, mockups y elementos de identidad visual se encuentran en:
+
+```plaintext
+📁 docs/
+├── architecture/
+├── identity/
+├── images/
+├── mockups/
+└── navigation/
