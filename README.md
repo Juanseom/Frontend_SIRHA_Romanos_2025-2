@@ -34,7 +34,7 @@ El frontend sirve como **puente visual** entre los usuarios finales y la lógica
 | **Vite** | Herramienta de empaquetado y servidor de desarrollo. |
 | **TailwindCSS** | Framework CSS para estilos utilitarios y diseño responsivo. |
 | **React Router** | Manejo de rutas y navegación entre vistas. |
-| **ESLint** | Análisis estático de código para mantener consistencia y buenas prácticas. |
+| **GitHub Actions** | CI/CD con GitHub Actions y despliegue en **Vercel**. |
 
 ---
 
