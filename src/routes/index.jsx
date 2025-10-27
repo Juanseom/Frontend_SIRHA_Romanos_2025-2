@@ -17,6 +17,7 @@ import GestionarSolicitudesAdmin from './admin/GestionarSolicitudes'
 import PeriodosAdmin from './admin/Periodos'
 import MonitorearGruposAdmin from './admin/MonitorearGrupos'
 import Estadisticas from './admin/Estadisticas'
+import GruposYMaterias from './admin/GruposYMaterias'
 
 export const router = createBrowserRouter([
   // Dean routes
@@ -76,7 +77,12 @@ export const router = createBrowserRouter([
   path: '/admin/estadisticas',
   element: <Estadisticas />
   },
+  {
+    path: '/admin/grupos-materias',
+    element: <GruposYMaterias />
+  },
 
+  // Default route
   {
     path: '/',
     element: <DeanHome />,
