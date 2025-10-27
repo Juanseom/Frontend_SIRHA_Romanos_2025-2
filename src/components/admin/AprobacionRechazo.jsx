@@ -9,10 +9,44 @@ const AprobacionRechazo = () => {
   const porcentajeAprobadas = estadisticas.aprobadas
   const porcentajeRechazadas = estadisticas.rechazadas
 
-  // Calcular el ángulo para el SVG (círculo completo = 360 grados)
-  const radioCirculo = 100
-  const circunferencia = 2 * Math.PI * radioCirculo
-  const offsetAprobadas = circunferencia - (circunferencia * porcentajeAprobadas) / 100
+  // Calcular ángulos para los segmentos
+  const anguloAprobadas = (porcentajeAprobadas / 100) * 360
+  const anguloRechazadas = (porcentajeRechazadas / 100) * 360
+
+  // Función para calcular coordenadas del arco
+  const calcularArco = (startAngle, endAngle) => {
+    const start = polarToCartesian(120, 120, 100, endAngle)
+    const end = polarToCartesian(120, 120, 100, startAngle)
+    const largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1'
+    
+    return [
+      'M', start.x, start.y,
+      'A', 100, 100, 0, largeArcFlag, 0, end.x, end.y,
+      'L', 120, 120,
+      'Z'
+    ].join(' ')
+  }
+
+  const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
+    const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0
+    return {
+      x: centerX + radius * Math.cos(angleInRadians),
+      y: centerY + radius * Math.sin(angleInRadians)
+    }
+  }
+
+  // Calcular posición de los textos dentro de cada segmento
+  const calcularPosicionTexto = (startAngle, endAngle, radius = 60) => {
+    const angle = startAngle + (endAngle - startAngle) / 2
+    const angleInRadians = ((angle - 90) * Math.PI) / 180.0
+    return {
+      x: 120 + radius * Math.cos(angleInRadians),
+      y: 120 + radius * Math.sin(angleInRadians)
+    }
+  }
+
+  const posAprobadas = calcularPosicionTexto(0, anguloAprobadas)
+  const posRechazadas = calcularPosicionTexto(anguloAprobadas, 360)
 
   return (
     <div className="max-w-4xl">
@@ -22,41 +56,65 @@ const AprobacionRechazo = () => {
         <div className="flex items-center justify-center gap-16">
           {/* Gráfica de Torta (Pie Chart) */}
           <div className="relative">
-            <svg width="300" height="300" viewBox="0 0 240 240" className="transform -rotate-90">
-              {/* Círculo de fondo (rechazadas) */}
-              <circle
-                cx="120"
-                cy="120"
-                r={radioCirculo}
-                fill="#FF9999"
-                stroke="none"
+            <svg width="350" height="350" viewBox="0 0 240 240">
+              {/* Segmento Verde (Aprobadas) */}
+              <path
+                d={calcularArco(0, anguloAprobadas)}
+                fill="#9CECA6"
+                stroke="white"
+                strokeWidth="2"
               />
               
-              {/* Segmento de aprobadas */}
-              <circle
-                cx="120"
-                cy="120"
-                r={radioCirculo}
-                fill="transparent"
-                stroke="#9CECA6"
-                strokeWidth={radioCirculo * 2}
-                strokeDasharray={circunferencia}
-                strokeDashoffset={offsetAprobadas}
-                className="transition-all duration-1000"
+              {/* Segmento Rosa (Rechazadas) */}
+              <path
+                d={calcularArco(anguloAprobadas, 360)}
+                fill="#FF9999"
+                stroke="white"
+                strokeWidth="2"
               />
+
+              {/* Texto en segmento verde */}
+              <text
+                x={posAprobadas.x}
+                y={posAprobadas.y - 8}
+                textAnchor="middle"
+                fill="#1f2937"
+                fontSize="32"
+                fontWeight="bold"
+              >
+                {porcentajeAprobadas}%
+              </text>
+              <text
+                x={posAprobadas.x}
+                y={posAprobadas.y + 15}
+                textAnchor="middle"
+                fill="#4b5563"
+                fontSize="12"
+              >
+                Aprobadas
+              </text>
+
+              {/* Texto en segmento rosa */}
+              <text
+                x={posRechazadas.x}
+                y={posRechazadas.y - 8}
+                textAnchor="middle"
+                fill="#1f2937"
+                fontSize="32"
+                fontWeight="bold"
+              >
+                {porcentajeRechazadas}%
+              </text>
+              <text
+                x={posRechazadas.x}
+                y={posRechazadas.y + 15}
+                textAnchor="middle"
+                fill="#4b5563"
+                fontSize="12"
+              >
+                Rechazadas
+              </text>
             </svg>
-            
-            {/* Porcentajes en el centro */}
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <div className="text-center mb-4">
-                <div className="text-4xl font-bold text-gray-800">{porcentajeAprobadas}%</div>
-                <div className="text-sm text-gray-600">Aprobadas</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-gray-800">{porcentajeRechazadas}%</div>
-                <div className="text-sm text-gray-600">Rechazadas</div>
-              </div>
-            </div>
           </div>
 
           {/* Leyenda */}
