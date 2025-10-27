@@ -13,6 +13,9 @@ import SemaforoAcademico from './student/SemaforoAcademico'
 
 // Admin routes
 import AdminHome from './admin/AdminHome'
+import GestionarSolicitudesAdmin from './admin/GestionarSolicitudes'
+import PeriodosAdmin from './admin/Periodos'
+import MonitorearGruposAdmin from './admin/MonitorearGrupos'
 
 export const router = createBrowserRouter([
   // Dean routes
@@ -56,12 +59,19 @@ export const router = createBrowserRouter([
     path: '/admin-home',
     element: <AdminHome />,
   },
-  // {
-  //   path: '/admin/gestionar-solicitudes',
-  //   element: <AdminGestionarSolicitudes />,
-  // },
+  {
+    path: '/admin/gestionar-solicitudes',
+    element: <GestionarSolicitudesAdmin />,
+  },
+  {
+    path: '/admin/periodos',
+    element: <PeriodosAdmin />,
+  },
+  {
+    path: '/admin/monitorear-grupos',
+    element: <MonitorearGruposAdmin />,
+  },
 
-  // Default redirect
   {
     path: '/',
     element: <DeanHome />,
