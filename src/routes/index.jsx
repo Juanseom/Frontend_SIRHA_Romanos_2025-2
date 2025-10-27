@@ -16,6 +16,7 @@ import AdminHome from './admin/AdminHome'
 import GestionarSolicitudesAdmin from './admin/GestionarSolicitudes'
 import PeriodosAdmin from './admin/Periodos'
 import MonitorearGruposAdmin from './admin/MonitorearGrupos'
+import Estadisticas from './admin/Estadisticas'
 
 export const router = createBrowserRouter([
   // Dean routes
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
   {
     path: '/admin/monitorear-grupos',
     element: <MonitorearGruposAdmin />,
+  },
+  {
+  path: '/admin/estadisticas',
+  element: <Estadisticas />
   },
 
   {

@@ -128,11 +128,8 @@ npm run build
 ### **Local**
 - URL: [http://localhost:5173](http://localhost:5173)
 
-### **Servidor**
-- URL: *pendiente de despliegue*
-- Configuración futura:  
-  - Integración con backend mediante variables de entorno (`.env`)  
-  - Configuración del dominio y entorno de producción  
+### **Servidor (Vercel)**
+- URL: [https://sirha-romanos.vercel.app/](https://sirha-romanos.vercel.app/)
 
 ---
 
