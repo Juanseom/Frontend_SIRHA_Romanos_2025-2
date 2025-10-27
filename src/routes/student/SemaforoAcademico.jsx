@@ -27,6 +27,7 @@ const SemaforoAcademico = () => {
           creditos: 0,
           tipo: 'H', // H = Homologable, N = No homologable
           estado: 'aprobada', // aprobada, perdida, cursando, pendiente
+          nota: 4.2, // Solo para materias aprobadas
           prerequisitos: []
         },
         {
@@ -36,6 +37,7 @@ const SemaforoAcademico = () => {
           creditos: 0,
           tipo: 'H',
           estado: 'aprobada',
+          nota: 3.8,
           prerequisitos: []
         },
         {
@@ -45,6 +47,7 @@ const SemaforoAcademico = () => {
           creditos: 3,
           tipo: 'H',
           estado: 'aprobada',
+          nota: 4.5,
           prerequisitos: ['MABA']
         },
         {
@@ -54,6 +57,7 @@ const SemaforoAcademico = () => {
           creditos: 3,
           tipo: 'H',
           estado: 'aprobada',
+          nota: 4.0,
           prerequisitos: ['CADI']
         },
         {
@@ -63,6 +67,7 @@ const SemaforoAcademico = () => {
           creditos: 3,
           tipo: 'H',
           estado: 'aprobada',
+          nota: 3.9,
           prerequisitos: ['FIBA', 'CADI']
         },
         {
@@ -72,6 +77,7 @@ const SemaforoAcademico = () => {
           creditos: 2,
           tipo: 'N',
           estado: 'aprobada',
+          nota: 4.3,
           prerequisitos: []
         }
       ]
@@ -289,12 +295,16 @@ const SemaforoAcademico = () => {
           </div>
         </div>
 
-        {/* Grid de materias con scroll horizontal */}
-        <div className="overflow-x-auto max-w-[1400px]">
-          <div className="flex gap-6 pb-4">
+        {/* Grid de materias organizado por semestres (filas) */}
+        <div className="max-w-full overflow-x-auto">
+          <div className="space-y-8 pb-4">
             {semestres.map((semestre) => (
-              <div key={semestre.numero} className="flex-shrink-0">
-                <div className="space-y-3">
+              <div key={semestre.numero}>
+                {/* Indicador de semestre (opcional) */}
+                {/* <h3 className="text-sm font-bold text-gray-600 mb-3">Semestre {semestre.numero}</h3> */}
+                
+                {/* Materias del semestre en fila con scroll horizontal */}
+                <div className="flex gap-4 overflow-x-auto pb-2">
                   {semestre.materias.map((materia) => (
                     <MateriaCard
                       key={materia.id}

@@ -1,5 +1,5 @@
 const MateriaCard = ({ materia, onClick }) => {
-  // Definir colores según estado
+    // Colores según el estado de la materia
   const getBackgroundColor = () => {
     switch (materia.estado) {
       case 'aprobada':
@@ -22,31 +22,30 @@ const MateriaCard = ({ materia, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="w-[180px] rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 border"
+      className="flex-shrink-0 w-[200px] rounded-t-3xl rounded-b-lg shadow-md hover:shadow-xl transition-all duration-200 hover:scale-105 border-2"
       style={{
         backgroundColor: getBackgroundColor(),
-        borderColor: getBorderColor(),
-        borderWidth: '2px'
+        borderColor: getBorderColor()
       }}
     >
-      <div className="p-3">
-        {/* Header con créditos y tipo */}
-        <div className="flex justify-between items-start mb-2">
-          <span className="text-xs font-semibold px-2 py-1 bg-white bg-opacity-80 rounded">
+      <div className="p-4">
+        {/* Header con créditos y tipo en la misma fila */}
+        <div className="flex justify-between items-center mb-3">
+          <span className="text-xs font-semibold px-2.5 py-1 bg-white bg-opacity-90 rounded shadow-sm">
             Créditos: {materia.creditos}
           </span>
-          <span className="text-xs font-bold px-2 py-1 bg-white bg-opacity-80 rounded">
+          <span className="text-xs font-bold px-2.5 py-1 bg-white bg-opacity-90 rounded shadow-sm">
             {materia.tipo}
           </span>
         </div>
 
         {/* Código de la materia */}
-        <h3 className="text-center font-bold text-lg mb-2">
+        <h3 className="text-center font-bold text-xl mb-3 tracking-wide">
           {materia.codigo}
         </h3>
 
         {/* Nombre de la materia */}
-        <p className="text-xs text-center leading-tight min-h-[40px] flex items-center justify-center">
+        <p className="text-xs text-center leading-tight min-h-[36px] flex items-center justify-center px-1">
           {materia.nombre}
         </p>
       </div>

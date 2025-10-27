@@ -36,7 +36,7 @@ const PrerequisitosModal = ({ isOpen, onClose, materia }) => {
               </span>
             </div>
             
-            <p className="text-gray-700 mb-2">{materia.nombre}</p>
+            <p className="text-gray-700 mb-3">{materia.nombre}</p>
             
             <div className="flex gap-4 text-sm text-gray-600">
               <div>
@@ -45,6 +45,12 @@ const PrerequisitosModal = ({ isOpen, onClose, materia }) => {
               <div>
                 <span className="font-semibold">Tipo:</span> {materia.tipo === 'H' ? 'Homologable' : 'No Homologable'}
               </div>
+              {/* Mostrar nota solo si está aprobada */}
+              {materia.estado === 'aprobada' && materia.nota && (
+                <div>
+                  <span className="font-semibold">Nota:</span> <span className="font-bold text-gray-800">{materia.nota.toFixed(1)}</span>
+                </div>
+              )}
             </div>
           </div>
 
