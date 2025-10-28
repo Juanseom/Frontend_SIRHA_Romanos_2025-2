@@ -6,7 +6,7 @@ const Header = ({ homeRoute = '/' }) => {
   const navigate = useNavigate()
 
   return (
-    <header className="w-full bg-[#b50e11] px-8 py-4 flex items-center justify-between">
+    <header className="w-full bg-[#b50e11] px-8 py-4 flex items-center justify-between sticky top-0 z-50">
       {/* Logo - clickeable para ir a home del flujo actual */}
       <button onClick={() => navigate(homeRoute)} className="flex items-center">
         <img 
@@ -39,7 +39,7 @@ const Header = ({ homeRoute = '/' }) => {
           </svg>
         </button>
 
-        {/* Profile Dropdown - NUEVO */}
+        {/* Profile Dropdown*/}
         <ProfileDropdown />
       </nav>
     </header>
