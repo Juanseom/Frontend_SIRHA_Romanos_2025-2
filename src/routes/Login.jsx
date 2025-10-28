@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import logoSirha from '../assets/logos/sirha.png'
+import fondoUniversidad from '../assets/images/fondoUniversidad.png'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -98,15 +100,24 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" 
+         style={{
+           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${fondoUniversidad})`,
+           backgroundSize: 'cover',
+           backgroundPosition: 'center'
+         }}>
       <div className="w-full max-w-md">
         {/* Logo y título */}
         <div className="text-center mb-8">
-          <div className="bg-[#b50e11] text-white text-4xl font-bold py-4 px-8 rounded-lg inline-block mb-4">
-            SIRHA
+          <div className="bg-white rounded-lg inline-block px-8 py-6 mb-4 shadow-lg">
+            <img 
+              src={logoSirha} 
+              alt="SIRHA Logo" 
+              className="h-20 w-auto mx-auto"
+            />
           </div>
-          <h1 className="text-2xl font-bold text-gray-800">Sistema de Inscripción y Registro Académico</h1>
-          <p className="text-gray-600 mt-2">Escuela Colombiana de Ingeniería</p>
+          <p className="text-white text-lg font-semibold drop-shadow-lg">Bienvenido</p>
+          <p className="text-white text-sm drop-shadow-lg">Ingresa a tu cuenta académica</p>
         </div>
 
         {/* Formulario de login */}
@@ -172,7 +183,7 @@ const Login = () => {
         </div>
 
         {/* Información de usuarios de prueba */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+        <div className="mt-6 bg-white/90 backdrop-blur border border-blue-200 rounded-lg p-4">
           <p className="text-xs font-semibold text-blue-900 mb-2">🔐 Usuarios de prueba:</p>
           <div className="text-xs text-blue-800 space-y-1">
             <p><strong>Estudiante:</strong> estudiante@escuelaing.edu.co / estudiante123</p>
