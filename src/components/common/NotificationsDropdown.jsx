@@ -290,21 +290,13 @@ const NotificationsDropdown = () => {
             </div>
 
             {/* Footer con acciones */}
-            {notificaciones.length > 0 && (
-              <div className="px-4 py-3 border-t border-gray-200 bg-gray-50 flex gap-2">
-                {notificacionesNoLeidas > 0 && (
-                  <button
-                    onClick={marcarTodasComoLeidas}
-                    className="flex-1 text-sm text-[#b50e11] hover:bg-red-50 font-medium py-2 px-3 rounded-lg transition-colors"
-                  >
-                    Marcar todas como leídas
-                  </button>
-                )}
+            {notificaciones.length > 0 && notificacionesNoLeidas > 0 && (
+              <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
                 <button
-                  onClick={verTodasLasNotificaciones}
-                  className="flex-1 text-sm text-gray-700 hover:bg-gray-100 font-medium py-2 px-3 rounded-lg transition-colors"
+                  onClick={marcarTodasComoLeidas}
+                  className="w-full text-sm text-[#b50e11] hover:bg-red-50 font-medium py-2 px-3 rounded-lg transition-colors"
                 >
-                  Ver todas
+                  Marcar todas como leídas
                 </button>
               </div>
             )}
