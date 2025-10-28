@@ -100,29 +100,29 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center p-4" 
+    <div className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center p-4" 
          style={{
            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${fondoUniversidad})`,
            backgroundSize: 'cover',
            backgroundPosition: 'center'
          }}>
       <div className="w-full max-w-md">
-        {/* Logo y título */}
-        <div className="text-center mb-8">
-          <div className="bg-white rounded-lg inline-block px-8 py-6 mb-4 shadow-lg">
+        {/* Todo en un solo recuadro */}
+        <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-2xl px-8 pb-8 pt-2">
+          {/* Logo */}
+          <div className="text-center mb-1 pb-1">
             <img 
               src={logoSirha} 
               alt="SIRHA Logo" 
-              className="h-20 w-auto mx-auto"
+              className="h-32 w-auto mx-auto"
             />
           </div>
-          <p className="text-white text-lg font-semibold drop-shadow-lg">Bienvenido</p>
-          <p className="text-white text-sm drop-shadow-lg">Ingresa a tu cuenta académica</p>
-        </div>
 
-        {/* Formulario de login */}
-        <div className="bg-white rounded-lg shadow-xl p-8">
-          <h2 className="text-xl font-bold text-gray-800 mb-6 text-center">Iniciar Sesión</h2>
+          {/* Cabecera de bienvenida */}
+          <div className="text-center mb-6">
+            <h1 className="text-2xl font-bold text-gray-800 mb-1">Bienvenido</h1>
+            <p className="text-gray-600 text-sm">Ingresa a tu cuenta académica</p>
+          </div>
           
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
@@ -182,13 +182,32 @@ const Login = () => {
           </div>
         </div>
 
-        {/* Información de usuarios de prueba */}
-        <div className="mt-6 bg-white/90 backdrop-blur border border-blue-200 rounded-lg p-4">
-          <p className="text-xs font-semibold text-blue-900 mb-2">🔐 Usuarios de prueba:</p>
-          <div className="text-xs text-blue-800 space-y-1">
-            <p><strong>Estudiante:</strong> estudiante@escuelaing.edu.co / estudiante123</p>
-            <p><strong>Decano:</strong> decano@escuelaing.edu.co / decano123</p>
-            <p><strong>Admin:</strong> admin@escuelaing.edu.co / admin123</p>
+        {/* Footer */}
+        <div className="mt-6">
+          {/* Soporte técnico */}
+          <div className="bg-white/90 backdrop-blur rounded-lg p-4 mb-3 text-center">
+            <p className="text-sm text-gray-700 mb-2">
+              <span className="font-semibold">¿Problemas para ingresar?</span>
+            </p>
+            <p className="text-xs text-gray-600 mb-2">
+              Para soporte técnico, comunícate con:
+            </p>
+            <a 
+              href="mailto:soporte@escuelaing.edu.co" 
+              className="text-sm text-[#b50e11] hover:underline font-medium"
+            >
+              soporte@escuelaing.edu.co
+            </a>
+          </div>
+
+          {/* Copyright */}
+          <div className="text-center">
+            <p className="text-xs text-white drop-shadow-lg">
+              © 2025 Escuela Colombiana de Ingeniería Julio Garavito
+            </p>
+            <p className="text-xs text-white/80 drop-shadow-lg mt-1">
+              Todos los derechos reservados
+            </p>
           </div>
         </div>
       </div>
