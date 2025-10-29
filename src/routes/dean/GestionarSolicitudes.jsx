@@ -9,9 +9,9 @@ const GestionarSolicitudes = () => {
   const [selectedSolicitud, setSelectedSolicitud] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Rol fijo para admin
-  const role = 'admin'
-  const homeRoute = '/admin-home'
+  // Rol fijo para decano
+  const role = 'dean'
+  const homeRoute = '/dean-home'
 
   // Datos de ejemplo (esto vendrá del backend)
   const [solicitudes, setSolicitudes] = useState([
@@ -120,7 +120,7 @@ const GestionarSolicitudes = () => {
       observacion: 'El profesor del grupo 6 tiene mejor metodología según comentarios.',
       estado: 'pendiente'
     },
-    // Solicitudes históricas (aprobadas/rechazadas)
+    // Solicitudes históricas
     {
       id: 8,
       nombre: 'Carlos Rodríguez',
@@ -154,6 +154,23 @@ const GestionarSolicitudes = () => {
       estado: 'rechazada',
       respuesta: 'Grupo sin cupos disponibles. Por favor selecciona otro grupo.',
       fechaRespuesta: '2025-01-07'
+    },
+    {
+      id: 10,
+      nombre: 'Pedro Gómez',
+      titulo: 'Cambio de grupo: ALGO - 3 → ALGO - 5',
+      prioridad: 'Media',
+      fecha: '2025-01-06',
+      codigo: '1000100110',
+      carrera: 'Ingeniería de Sistemas',
+      semestre: 4,
+      tipo: 'Cambio de Grupo',
+      grupoActual: 'ALGO-3',
+      grupoDestino: 'ALGO-5',
+      observacion: 'Necesito cambiar de grupo por motivos personales.',
+      estado: 'info-solicitada',
+      respuesta: 'Por favor adjunta certificado médico que justifique el cambio de horario.',
+      fechaRespuesta: '2025-01-06'
     }
   ])
 
@@ -168,6 +185,8 @@ const GestionarSolicitudes = () => {
       filtered = filtered.filter(s => s.estado === 'aprobada')
     } else if (filterEstado === 'rechazadas') {
       filtered = filtered.filter(s => s.estado === 'rechazada')
+    } else if (filterEstado === 'info-solicitada') {
+      filtered = filtered.filter(s => s.estado === 'info-solicitada')
     }
     // 'todas' no filtra por estado
     
@@ -224,6 +243,21 @@ const GestionarSolicitudes = () => {
     alert('Solicitud rechazada')
   }
 
+  // Manejar solicitud de información adicional
+  const handleSolicitarInfo = (solicitudId, informacionRequerida) => {
+    setSolicitudes(solicitudes.map(sol => 
+      sol.id === solicitudId 
+        ? { 
+            ...sol, 
+            estado: 'info-solicitada', 
+            respuesta: informacionRequerida,
+            fechaRespuesta: new Date().toISOString().split('T')[0]
+          } 
+        : sol
+    ))
+    alert('Se ha solicitado información adicional al estudiante')
+  }
+
   const prioridadColor = (prioridad) => {
     if (prioridad === 'Media') return 'bg-yellow-500'
     if (prioridad === 'Baja') return 'bg-green-500'
@@ -234,7 +268,13 @@ const GestionarSolicitudes = () => {
     if (estado === 'aprobada') return 'text-green-600'
     if (estado === 'rechazada') return 'text-red-600'
     if (estado === 'pendiente') return 'text-gray-600'
+    if (estado === 'info-solicitada') return 'text-yellow-600'
     return 'text-gray-600'
+  }
+
+  const estadoTexto = (estado) => {
+    if (estado === 'info-solicitada') return 'Info Solicitada'
+    return estado.charAt(0).toUpperCase() + estado.slice(1)
   }
 
   const solicitudesFiltradas = getFilteredAndSortedSolicitudes()
@@ -256,6 +296,7 @@ const GestionarSolicitudes = () => {
                 className="border border-gray-300 rounded px-3 py-1 text-sm"
               >
                 <option value="pendientes">Pendientes</option>
+                <option value="info-solicitada">Info Solicitada</option>
                 <option value="aprobadas">Aprobadas</option>
                 <option value="rechazadas">Rechazadas</option>
                 <option value="todas">Todas</option>
@@ -327,7 +368,7 @@ const GestionarSolicitudes = () => {
                   </div>
                   <div>
                     <span className={`text-sm font-semibold capitalize ${estadoColor(solicitud.estado)}`}>
-                      {solicitud.estado}
+                      {estadoTexto(solicitud.estado)}
                     </span>
                   </div>
                 </div>
@@ -348,6 +389,7 @@ const GestionarSolicitudes = () => {
         solicitud={selectedSolicitud}
         onAprobar={handleAprobar}
         onRechazar={handleRechazar}
+        onSolicitarInfo={handleSolicitarInfo}
       />
     </Layout>
   )
