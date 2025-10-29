@@ -12,98 +12,144 @@ const MisSolicitudes = () => {
   const [isCrearModalOpen, setIsCrearModalOpen] = useState(false)
 
   // Datos de ejemplo (vendrán del backend)
-  // Datos de ejemplo (vendrán del backend)
-const [solicitudes, setSolicitudes] = useState([
-  {
-    id: 1,
-    tipo: 'Cambio Grupo',
-    numeroSolicitud: '00021671',
-    numeroCatalogo: '98698',
-    codigoGrupo: '1770',
-    fechaRealizada: '20/07/2025 3:27PM',
-    estado: 'aprobada',
-    aRetirar: {
-      nombreMateria: 'CALV',
-      grupoClase: '4147'
+  const [solicitudes, setSolicitudes] = useState([
+    {
+      id: 1,
+      tipo: 'Cambio Grupo',
+      numeroSolicitud: '00021671',
+      numeroCatalogo: '98698',
+      codigoGrupo: '1770',
+      fechaRealizada: '20/07/2025 3:27PM',
+      periodo: '2025-2',
+      estado: 'aprobada',
+      aRetirar: {
+        nombreMateria: 'CALV',
+        grupoClase: '4147'
+      },
+      aInscribir: {
+        nombreMateria: 'CALV',
+        grupoClase: '4144'
+      },
+      descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
+      respuesta: 'No se qué escribir, pero aquí está la razón de por qué se la aprobaron o nada.'
     },
-    aInscribir: {
-      nombreMateria: 'CALV',
-      grupoClase: '4144'
+    {
+      id: 2,
+      tipo: 'Bajar Asignatura',
+      numeroSolicitud: '00021671',
+      numeroCatalogo: 'FUPB',
+      codigoGrupo: '8808',
+      fechaRealizada: '20/07/2025 3:27PM',
+      periodo: '2025-2',
+      estado: 'en proceso',
+      aRetirar: {
+        nombreMateria: 'FUPB',
+        grupoClase: '8808'
+      },
+      aInscribir: null,
+      descripcion: 'Necesito bajar esta materia por razones personales.',
+      respuesta: ''
     },
-    descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
-    respuesta: 'No se qué escribir, pero aquí está la razón de por qué se la aprobaron o nada.'
-  },
-  {
-    id: 2,
-    tipo: 'Bajar Asignatura',
-    numeroSolicitud: '00021671',
-    numeroCatalogo: 'FUPB',
-    codigoGrupo: '8808',
-    fechaRealizada: '20/07/2025 3:27PM',
-    estado: 'en proceso',
-    aRetirar: {
-      nombreMateria: 'FUPB',
-      grupoClase: '8808'
+    {
+      id: 3,
+      tipo: 'Inscribir Asignatura',
+      numeroSolicitud: '00021671',
+      numeroCatalogo: 'PRYE',
+      codigoGrupo: '4567',
+      fechaRealizada: '20/07/2025 3:27PM',
+      periodo: '2025-2',
+      estado: 'en proceso',
+      aRetirar: null,
+      aInscribir: {
+        nombreMateria: 'PRYE',
+        grupoClase: '4567'
+      },
+      descripcion: 'Quiero inscribir esta materia para completar mis créditos.',
+      respuesta: ''
     },
-    aInscribir: null,
-    descripcion: 'Necesito bajar esta materia por razones personales.',
-    respuesta: ''
-  },
-  {
-    id: 3,
-    tipo: 'Inscribir Asignatura',
-    numeroSolicitud: '00021671',
-    numeroCatalogo: 'PRYE',
-    codigoGrupo: '4567',
-    fechaRealizada: '20/07/2025 3:27PM',
-    estado: 'en proceso',
-    aRetirar: null,
-    aInscribir: {
-      nombreMateria: 'PRYE',
-      grupoClase: '4567'
+    {
+      id: 4,
+      tipo: 'Bajar Asignatura',
+      numeroSolicitud: '00021671',
+      numeroCatalogo: 'DOSW',
+      codigoGrupo: '1964',
+      fechaRealizada: '20/07/2025 3:27PM',
+      periodo: '2025-2',
+      estado: 'rechazada',
+      aRetirar: {
+        nombreMateria: 'DOSW',
+        grupoClase: '1964'
+      },
+      aInscribir: null,
+      descripcion: 'Solicito bajar esta materia.',
+      respuesta: 'No se qué escribir, pero aquí está la razón de por qué se la rechazaron.'
     },
-    descripcion: 'Quiero inscribir esta materia para completar mis créditos.',
-    respuesta: ''
-  },
-  {
-    id: 4,
-    tipo: 'Bajar Asignatura',
-    numeroSolicitud: '00021671',
-    numeroCatalogo: 'DOSW',
-    codigoGrupo: '1964',
-    fechaRealizada: '20/07/2025 3:27PM',
-    estado: 'rechazada',
-    aRetirar: {
-      nombreMateria: 'DOSW',
-      grupoClase: '1964'
+    {
+      id: 5,
+      tipo: 'Cambio Grupo',
+      numeroSolicitud: '00021671',
+      numeroCatalogo: 'ECI3',
+      codigoGrupo: '2163',
+      fechaRealizada: '20/07/2025 3:27PM',
+      periodo: '2025-2',
+      estado: 'pendiente',
+      aRetirar: {
+        nombreMateria: 'CALV',
+        grupoClase: '4147'
+      },
+      aInscribir: {
+        nombreMateria: 'CALV',
+        grupoClase: '4144'
+      },
+      descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
+      respuesta: ''
     },
-    aInscribir: null,
-    descripcion: 'Solicito bajar esta materia.',
-    respuesta: 'No se qué escribir, pero aquí está la razón de por qué se la rechazaron.'
-  },
-  {
-    id: 5,
-    tipo: 'Cambio Grupo',
-    numeroSolicitud: '00021671',
-    numeroCatalogo: 'ECI3',
-    codigoGrupo: '2163',
-    fechaRealizada: '20/07/2025 3:27PM',
-    estado: 'pendiente',
-    aRetirar: {
-      nombreMateria: 'CALV',
-      grupoClase: '4147'
+    // Solicitudes de periodos anteriores para probar el filtro
+    {
+      id: 6,
+      tipo: 'Inscribir Asignatura',
+      numeroSolicitud: '00021670',
+      numeroCatalogo: 'FUND',
+      codigoGrupo: '3456',
+      fechaRealizada: '15/01/2025 10:00AM',
+      periodo: '2025-1',
+      estado: 'aprobada',
+      aRetirar: null,
+      aInscribir: {
+        nombreMateria: 'FUND',
+        grupoClase: '3456'
+      },
+      descripcion: 'Solicitud de inscripción para el periodo 2025-1.',
+      respuesta: 'Aprobada. Grupo con disponibilidad.'
     },
-    aInscribir: {
-      nombreMateria: 'CALV',
-      grupoClase: '4144'
-    },
-    descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
-    respuesta: ''
-  }
-])
+    {
+      id: 7,
+      tipo: 'Cambio Grupo',
+      numeroSolicitud: '00021669',
+      numeroCatalogo: 'ALGO',
+      codigoGrupo: '2345',
+      fechaRealizada: '10/08/2024 2:30PM',
+      periodo: '2024-2',
+      estado: 'aprobada',
+      aRetirar: {
+        nombreMateria: 'ALGO',
+        grupoClase: '2345'
+      },
+      aInscribir: {
+        nombreMateria: 'ALGO',
+        grupoClase: '2346'
+      },
+      descripcion: 'Cambio de grupo por conflicto de horario.',
+      respuesta: 'Aprobada.'
+    }
+  ])
 
-  // Filtrar según la pestaña activa
+  // Filtrar según la pestaña activa Y el periodo seleccionado
   const solicitudesFiltradas = solicitudes.filter(sol => {
+    // Filtro por periodo
+    if (sol.periodo !== periodoSeleccionado) return false
+    
+    // Filtro por estado
     if (activeTab === 'todas') return true
     if (activeTab === 'aprobadas') return sol.estado === 'aprobada'
     if (activeTab === 'rechazadas') return sol.estado === 'rechazada'
@@ -118,13 +164,42 @@ const [solicitudes, setSolicitudes] = useState([
   }
 
   const handleNuevaSolicitud = () => {
-  setIsCrearModalOpen(true)
-    }
+    setIsCrearModalOpen(true)
+  }
 
-    const handleCrearSolicitud = (nuevaSolicitud) => {
-    setSolicitudes([nuevaSolicitud, ...solicitudes])
-    alert('Solicitud creada exitosamente')
+  const handleCrearSolicitud = (nuevaSolicitud) => {
+    // Agregar periodo actual y generar ID
+    const solicitudConPeriodo = {
+      ...nuevaSolicitud,
+      id: solicitudes.length + 1,
+      periodo: periodoSeleccionado,
+      fechaRealizada: new Date().toLocaleString('es-CO', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+      }),
+      estado: 'pendiente',
+      respuesta: ''
     }
+    
+    setSolicitudes([solicitudConPeriodo, ...solicitudes])
+    alert('Solicitud creada exitosamente')
+  }
+
+  // Función para cancelar solicitud
+  const handleCancelarSolicitud = (solicitudId) => {
+    const confirmar = window.confirm('¿Estás seguro de que deseas cancelar esta solicitud?')
+    
+    if (confirmar) {
+      // En producción, aquí harías una llamada al backend
+      setSolicitudes(solicitudes.filter(sol => sol.id !== solicitudId))
+      setIsModalOpen(false)
+      alert('Solicitud cancelada exitosamente')
+    }
+  }
 
   const tabs = [
     { id: 'todas', label: 'Todas' },
@@ -178,19 +253,19 @@ const [solicitudes, setSolicitudes] = useState([
 
         {/* Lista de solicitudes - MISMO ANCHO QUE LA LÍNEA */}
         <div className="space-y-4 mb-8 max-w-[1200px]">
-        {solicitudesFiltradas.length === 0 ? (
+          {solicitudesFiltradas.length === 0 ? (
             <p className="text-gray-500 text-center py-8">
-            No hay solicitudes {activeTab !== 'todas' ? `${activeTab}` : ''} en este periodo
+              No hay solicitudes {activeTab !== 'todas' ? `${activeTab}` : ''} en el periodo {periodoSeleccionado}
             </p>
-        ) : (
+          ) : (
             solicitudesFiltradas.map(solicitud => (
-            <SolicitudCard
+              <SolicitudCard
                 key={solicitud.id}
                 solicitud={solicitud}
                 onClick={handleSolicitudClick}
-            />
+              />
             ))
-        )}
+          )}
         </div>
 
         {/* Botón Nueva Solicitud */}
@@ -209,12 +284,15 @@ const [solicitudes, setSolicitudes] = useState([
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         solicitud={selectedSolicitud}
+        onCancelar={handleCancelarSolicitud}
       />
-      {/* Modal de crear solicitud - NUEVO */}
+      
+      {/* Modal de crear solicitud */}
       <CrearSolicitudModal
         isOpen={isCrearModalOpen}
         onClose={() => setIsCrearModalOpen(false)}
         onCreate={handleCrearSolicitud}
+        periodoActual={periodoSeleccionado}
       />
     </Layout>
   )

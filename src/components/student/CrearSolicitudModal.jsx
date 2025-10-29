@@ -1,52 +1,145 @@
 import { useState } from 'react'
+import { 
+  materiasInscritas, 
+  materiasParaInscribir, 
+  gruposDisponibles,
+  validaciones,
+  getGrupoInfo 
+} from '../../utils/mockData'
 
-const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
+const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
   const [tipoSeleccionado, setTipoSeleccionado] = useState('Cambio Grupo')
   const [formData, setFormData] = useState({
     tipo: 'Cambio Grupo',
+    materiaSeleccionada: '',
     retirarMateria: '',
     retirarGrupo: '',
     inscribirMateria: '',
     inscribirGrupo: '',
     descripcion: ''
   })
+  const [errores, setErrores] = useState({})
 
   if (!isOpen) return null
 
   const tiposSolicitud = [
     'Cambio Grupo',
-    'Inscribir/Adicionar Materia',
-    'Retirar Materia'
+    'Inscribir Asignatura',
+    'Bajar Asignatura'
   ]
 
   const handleTipoClick = (tipo) => {
     setTipoSeleccionado(tipo)
-    setFormData({ ...formData, tipo })
+    setFormData({
+      ...formData,
+      tipo,
+      materiaSeleccionada: '',
+      retirarMateria: '',
+      retirarGrupo: '',
+      inscribirMateria: '',
+      inscribirGrupo: ''
+    })
+    setErrores({})
+  }
+
+  const handleMateriaChange = (value) => {
+    setFormData({ ...formData, materiaSeleccionada: value })
+    setErrores({ ...errores, materia: '' })
+
+    // Si es cambio de grupo o bajar, llenar automáticamente retirar
+    if (tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Bajar Asignatura') {
+      const materia = materiasInscritas.find(m => m.codigo === value)
+      if (materia) {
+        setFormData({
+          ...formData,
+          materiaSeleccionada: value,
+          retirarMateria: materia.nombre,
+          retirarGrupo: materia.grupoActual
+        })
+      }
+    }
+    // Si es inscribir, llenar inscribir
+    else if (tipoSeleccionado === 'Inscribir Asignatura') {
+      const materia = materiasParaInscribir.find(m => m.codigo === value)
+      if (materia) {
+        setFormData({
+          ...formData,
+          materiaSeleccionada: value,
+          inscribirMateria: materia.nombre
+        })
+      }
+    }
+  }
+
+  const handleGrupoChange = (value) => {
+    setFormData({ ...formData, inscribirGrupo: value })
+    setErrores({ ...errores, grupo: '' })
   }
 
   const handleInputChange = (field, value) => {
     setFormData({ ...formData, [field]: value })
+    setErrores({ ...errores, [field]: '' })
+  }
+
+  // Obtener materias según el tipo
+  const getMateriasDisponibles = () => {
+    if (tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Bajar Asignatura') {
+      return materiasInscritas
+    } else if (tipoSeleccionado === 'Inscribir Asignatura') {
+      return materiasParaInscribir
+    }
+    return []
+  }
+
+  // Obtener grupos disponibles
+  const getGruposDisponibles = () => {
+    if (!formData.materiaSeleccionada) return []
+
+    if (tipoSeleccionado === 'Cambio Grupo') {
+      return gruposDisponibles[formData.materiaSeleccionada] || []
+    } else if (tipoSeleccionado === 'Inscribir Asignatura') {
+      const materia = materiasParaInscribir.find(m => m.codigo === formData.materiaSeleccionada)
+      return materia?.grupos || []
+    }
+    return []
+  }
+
+  const validarFormulario = () => {
+    const nuevosErrores = {}
+
+    if (!formData.materiaSeleccionada) {
+      nuevosErrores.materia = 'Debes seleccionar una materia'
+    }
+
+    if (tipoSeleccionado === 'Cambio Grupo') {
+      if (!formData.inscribirGrupo) {
+        nuevosErrores.grupo = 'Debes seleccionar el grupo destino'
+      } else if (formData.inscribirGrupo === formData.retirarGrupo) {
+        nuevosErrores.grupo = 'El grupo destino debe ser diferente al actual'
+      } else if (!validaciones.tieneCupos(formData.materiaSeleccionada, formData.inscribirGrupo)) {
+        nuevosErrores.grupo = 'El grupo no tiene cupos disponibles'
+      }
+    }
+
+    if (tipoSeleccionado === 'Inscribir Asignatura') {
+      if (!formData.inscribirGrupo) {
+        nuevosErrores.grupo = 'Debes seleccionar un grupo'
+      } else if (!validaciones.tieneCupos(formData.materiaSeleccionada, formData.inscribirGrupo)) {
+        nuevosErrores.grupo = 'El grupo no tiene cupos disponibles'
+      }
+    }
+
+    if (!formData.descripcion || formData.descripcion.trim().length < 10) {
+      nuevosErrores.descripcion = 'La descripción debe tener al menos 10 caracteres'
+    }
+
+    setErrores(nuevosErrores)
+    return Object.keys(nuevosErrores).length === 0
   }
 
   const handleCrearSolicitud = () => {
-    // Validación básica
-    if (tipoSeleccionado === 'Cambio Grupo') {
-      if (!formData.retirarMateria || !formData.retirarGrupo || 
-          !formData.inscribirMateria || !formData.inscribirGrupo || 
-          !formData.descripcion) {
-        alert('Por favor completa todos los campos obligatorios')
-        return
-      }
-    } else if (tipoSeleccionado === 'Inscribir/Adicionar Materia') {
-      if (!formData.inscribirMateria || !formData.inscribirGrupo || !formData.descripcion) {
-        alert('Por favor completa todos los campos obligatorios')
-        return
-      }
-    } else if (tipoSeleccionado === 'Retirar Materia') {
-      if (!formData.retirarMateria || !formData.retirarGrupo || !formData.descripcion) {
-        alert('Por favor completa todos los campos obligatorios')
-        return
-      }
+    if (!validarFormulario()) {
+      return
     }
 
     // Crear objeto de solicitud
@@ -54,7 +147,7 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
       id: Date.now(),
       tipo: formData.tipo,
       numeroSolicitud: `000${Math.floor(Math.random() * 99999)}`,
-      numeroCatalogo: formData.inscribirMateria || formData.retirarMateria || 'N/A',
+      numeroCatalogo: formData.materiaSeleccionada,
       codigoGrupo: formData.inscribirGrupo || formData.retirarGrupo || 'N/A',
       fechaRealizada: new Date().toLocaleString('es-ES', {
         day: '2-digit',
@@ -64,6 +157,7 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
         minute: '2-digit',
         hour12: true
       }).replace(',', ''),
+      periodo: periodoActual,
       estado: 'pendiente',
       aRetirar: formData.retirarMateria ? {
         nombreMateria: formData.retirarMateria,
@@ -82,18 +176,20 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
     // Limpiar formulario
     setFormData({
       tipo: 'Cambio Grupo',
+      materiaSeleccionada: '',
       retirarMateria: '',
       retirarGrupo: '',
       inscribirMateria: '',
       inscribirGrupo: '',
       descripcion: ''
     })
+    setErrores({})
     
     onClose()
   }
 
-  const mostrarRetirar = tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Retirar Materia'
-  const mostrarInscribir = tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Inscribir/Adicionar Materia'
+  const mostrarRetirar = tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Bajar Asignatura'
+  const mostrarInscribir = tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Inscribir Asignatura'
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -138,6 +234,28 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
               />
             </div>
 
+            {/* Selector de Materia */}
+            <div>
+              <label className="block text-sm font-semibold mb-1">Materia:</label>
+              <select
+                value={formData.materiaSeleccionada}
+                onChange={(e) => handleMateriaChange(e.target.value)}
+                className={`w-full border rounded px-3 py-2 text-sm ${
+                  errores.materia ? 'border-red-500' : 'border-gray-300'
+                }`}
+              >
+                <option value="">Selecciona una materia</option>
+                {getMateriasDisponibles().map((materia) => (
+                  <option key={materia.codigo} value={materia.codigo}>
+                    {materia.codigo} - {materia.nombre}
+                  </option>
+                ))}
+              </select>
+              {errores.materia && (
+                <p className="text-red-600 text-xs mt-1">{errores.materia}</p>
+              )}
+            </div>
+
             {/* Grid de A Retirar y A Inscribir */}
             <div className="grid grid-cols-2 gap-4">
               {/* A Retirar */}
@@ -150,9 +268,8 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
                       <input
                         type="text"
                         value={formData.retirarMateria}
-                        onChange={(e) => handleInputChange('retirarMateria', e.target.value)}
-                        placeholder="Ej: CALV"
-                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                        readOnly
+                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm bg-gray-50"
                       />
                     </div>
                     <div>
@@ -160,9 +277,8 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
                       <input
                         type="text"
                         value={formData.retirarGrupo}
-                        onChange={(e) => handleInputChange('retirarGrupo', e.target.value)}
-                        placeholder="Ej: 4147"
-                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                        readOnly
+                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm bg-gray-50"
                       />
                     </div>
                   </div>
@@ -179,22 +295,54 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
                       <input
                         type="text"
                         value={formData.inscribirMateria}
-                        onChange={(e) => handleInputChange('inscribirMateria', e.target.value)}
-                        placeholder="Ej: CALV"
-                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm"
+                        readOnly
+                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm bg-gray-50"
                       />
                     </div>
                     <div>
                       <label className="block text-xs mb-1">Grupo/Clase:</label>
-                      <input
-                        type="text"
+                      <select
                         value={formData.inscribirGrupo}
-                        onChange={(e) => handleInputChange('inscribirGrupo', e.target.value)}
-                        placeholder="Ej: 4144"
-                        className="w-full border border-gray-300 rounded px-2 py-1 text-sm"
-                      />
+                        onChange={(e) => handleGrupoChange(e.target.value)}
+                        disabled={!formData.materiaSeleccionada}
+                        className={`w-full border rounded px-2 py-1 text-sm ${
+                          errores.grupo ? 'border-red-500' : 'border-gray-300'
+                        } ${!formData.materiaSeleccionada ? 'bg-gray-100' : ''}`}
+                      >
+                        <option value="">Seleccionar grupo</option>
+                        {getGruposDisponibles().map((grupo) => (
+                          <option 
+                            key={grupo.codigo} 
+                            value={grupo.codigo}
+                            disabled={grupo.cuposDisponibles === 0}
+                          >
+                            {grupo.codigo} - {grupo.profesor}
+                            {grupo.cuposDisponibles > 0 
+                              ? ` (${grupo.cuposDisponibles} cupos)` 
+                              : ' (SIN CUPOS)'}
+                          </option>
+                        ))}
+                      </select>
+                      {errores.grupo && (
+                        <p className="text-red-600 text-xs mt-1">{errores.grupo}</p>
+                      )}
                     </div>
                   </div>
+                  
+                  {/* Info del grupo seleccionado */}
+                  {formData.inscribirGrupo && formData.materiaSeleccionada && (
+                    <div className="mt-2 bg-blue-50 border border-blue-200 rounded p-2 text-xs">
+                      {(() => {
+                        const grupoInfo = getGrupoInfo(formData.materiaSeleccionada, formData.inscribirGrupo)
+                        return grupoInfo ? (
+                          <>
+                            <p><strong>Horario:</strong> {grupoInfo.horario}</p>
+                            <p><strong>Cupos:</strong> {grupoInfo.cuposDisponibles}/{grupoInfo.cuposTotal}</p>
+                          </>
+                        ) : null
+                      })()}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -205,10 +353,18 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate }) => {
               <textarea
                 value={formData.descripcion}
                 onChange={(e) => handleInputChange('descripcion', e.target.value)}
-                placeholder="Cuéntanos los detalles de tu solicitud..."
-                className="w-full border border-gray-300 rounded px-3 py-2 text-sm resize-none"
+                placeholder="Cuéntanos los detalles de tu solicitud (mínimo 10 caracteres)..."
+                className={`w-full border rounded px-3 py-2 text-sm resize-none ${
+                  errores.descripcion ? 'border-red-500' : 'border-gray-300'
+                }`}
                 rows="4"
               />
+              <div className="flex justify-between items-center mt-1">
+                {errores.descripcion && (
+                  <p className="text-red-600 text-xs">{errores.descripcion}</p>
+                )}
+                <p className="text-xs text-gray-500 ml-auto">{formData.descripcion.length}/500</p>
+              </div>
             </div>
           </div>
 
