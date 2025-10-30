@@ -3,24 +3,31 @@ import { useNavigate } from 'react-router-dom'
 const Sidebar = ({ isOpen, onClose, role }) => {
   const navigate = useNavigate()
 
-  // Opciones según el rol
   const menuOptions = {
     dean: [
       { label: 'Gestionar Solicitudes', path: '/dean/gestionar-solicitudes' },
+      { label: 'Gestionar Grupos', path: '/dean/grupos-materias' },
+      { label: 'Gestionar Materias', path: '/dean/gestionar-materias' },
       { label: 'Periodos', path: '/dean/periodos' },
       { label: 'Monitorear Grupos', path: '/dean/monitorear-grupos' }
     ],
     student: [
       { label: 'Mis Solicitudes', path: '/student/mis-solicitudes' },
       { label: 'Semáforo Académico', path: '/student/semaforo' },
-      { label: 'Mis Horarios', path: '/student/horarios' }
+      { label: 'Mis Horarios', path: '/student/mis-horarios' }
     ],
     admin: [
       { label: 'Gestionar Solicitudes', path: '/admin/gestionar-solicitudes' },
+      { label: 'Gestionar Grupos', path: '/admin/grupos-materias' },
+      { label: 'Gestionar Materias', path: '/admin/gestionar-materias' },
       { label: 'Periodos', path: '/admin/periodos' },
       { label: 'Monitorear Grupos', path: '/admin/monitorear-grupos' },
-      { label: 'Grupos y Materias', path: '/admin/grupos-materias' },
       { label: 'Estadísticas', path: '/admin/estadisticas' }
+    ],
+    profesor: [
+      { label: 'Horario de Clases', path: '/profesor/horario' },
+      { label: 'Mis Grupos', path: '/profesor/mis-grupos' },
+      { label: 'Gestionar Solicitudes', path: '/profesor/gestionar-solicitudes' }
     ]
   }
 

@@ -9,8 +9,8 @@ const GestionarSolicitudes = () => {
   const [selectedSolicitud, setSelectedSolicitud] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  const role = 'admin'
-  const homeRoute = '/admin-home'
+  const role = 'profesor'
+  const homeRoute = '/profesor-home'
 
   // Datos de ejemplo (esto vendrá del backend)
   const [solicitudes, setSolicitudes] = useState([

@@ -8,6 +8,8 @@ import DeanHome from './dean/DeanHome'
 import GestionarSolicitudes from './dean/GestionarSolicitudes'
 import Periodos from './dean/Periodos'
 import MonitorearGrupos from './dean/MonitorearGrupos'
+import GestionarGruposDean from './dean/GruposYMaterias'
+import GestionarMateriasDean from './dean/GestionarMaterias'
 
 // Student routes
 import StudentHome from './student/StudentHome'
@@ -22,6 +24,13 @@ import PeriodosAdmin from './admin/Periodos'
 import MonitorearGruposAdmin from './admin/MonitorearGrupos'
 import Estadisticas from './admin/Estadisticas'
 import GruposYMaterias from './admin/GruposYMaterias'
+import GestionarMaterias from './admin/GestionarMaterias'
+
+// Professor routes
+import ProfesorHome from './professor/ProfesorHome'
+import GestionarSolicitudesProfesor from './professor/GestionarSolicitudes'
+import Horario from './professor/Horario'
+import MisGrupos from './professor/MisGrupos'
 
 export const router = createBrowserRouter([
   // Public routes (Login/Logout)
@@ -107,6 +116,22 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+    path: '/dean/grupos-materias',
+    element: (
+      <ProtectedRoute allowedRoles={['dean']}>
+        <GestionarGruposDean />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/dean/gestionar-materias',
+    element: (
+      <ProtectedRoute allowedRoles={['dean']}>
+        <GestionarMateriasDean />
+      </ProtectedRoute>
+    ),
+  },
 
   // ==================== ADMIN ROUTES ====================
   {
@@ -157,4 +182,46 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+  path: '/admin/gestionar-materias',
+  element: (
+    <ProtectedRoute allowedRoles={['admin']}>
+      <GestionarMaterias />
+    </ProtectedRoute>
+  ),
+  },
+
+  // ==================== PROFESSOR ROUTES ====================
+  {
+    path: '/profesor-home',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <ProfesorHome />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profesor/gestionar-solicitudes',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <GestionarSolicitudesProfesor />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profesor/horario',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <Horario />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profesor/mis-grupos',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <MisGrupos />
+      </ProtectedRoute>
+    ),
+  }
 ])

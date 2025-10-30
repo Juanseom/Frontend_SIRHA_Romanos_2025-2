@@ -5,6 +5,7 @@ import gestionarSolicitudes from '../../assets/icons/gestionarSolicitudes.png'
 import monitorearGrupos from '../../assets/icons/monitorearGrupos.png'
 import estadisticas from '../../assets/icons/estadisticas.png'
 import gruposYMaterias from '../../assets/icons/gruposYMaterias.png'
+import materias from '../../assets/icons/materias.png'
 import periodos from '../../assets/icons/periodos.png'
 
 const AdminHome = () => {
@@ -55,18 +56,30 @@ const AdminHome = () => {
           />
         </div>
 
-        {/* Segunda fila: 2 cards */}
+        {/* Segunda fila: 3 cards (agregando Gestionar Materias y renombrando Grupos y Materias) */}
         <div className="flex gap-8 justify-start items-start">
           <Card 
-            title="Grupos y Materias"
+            title="Gestionar Grupos"
             icon={
               <img 
                 src={gruposYMaterias} 
-                alt="Grupos y Materias" 
+                alt="Gestionar Grupos" 
                 className="w-40 h-40 object-contain"
               />
             }
             onClick={() => navigate('/admin/grupos-materias')}
+          />
+          
+          <Card 
+            title="Gestionar Materias"
+            icon={
+              <img 
+                src={materias} 
+                alt="Gestionar Materias" 
+                className="w-40 h-40 object-contain"
+              />
+            }
+            onClick={() => navigate('/admin/gestionar-materias')}
           />
           
           <Card 

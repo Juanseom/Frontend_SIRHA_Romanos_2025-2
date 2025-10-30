@@ -1,9 +1,9 @@
 const ProgressBar = ({ current, total, percentage }) => {
   // Color basado en el porcentaje
   const getColor = () => {
-    if (percentage >= 80) return 'bg-green-500'
+    if (percentage >= 80) return 'bg-orange-500'
     if (percentage >= 50) return 'bg-yellow-500'
-    if (percentage >= 20) return 'bg-orange-500'
+    if (percentage >= 20) return 'bg-green-500'
     return 'bg-gray-300'
   }
 

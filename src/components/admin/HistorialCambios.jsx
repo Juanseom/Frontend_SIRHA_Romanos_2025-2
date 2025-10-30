@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const HistorialCambios = () => {
   const [codigoEstudiante, setCodigoEstudiante] = useState('')
-  const [filtro, setFiltro] = useState('todos') // todos, aprobados, rechazados
+  const [filtro, setFiltro] = useState('todos')
   const [estudianteEncontrado, setEstudianteEncontrado] = useState(null)
 
   // Datos de ejemplo - vendrían del backend

@@ -5,7 +5,7 @@ import GroupInfoModal from '../../components/dean/GroupInfoModal'
 import ManageGroupModal from '../../components/dean/ManageGroupModal'
 
 const MonitorearGrupos = () => {
-  const [activeTab, setActiveTab] = useState('disponibles') // 'disponibles' o 'llenos'
+  const [activeTab, setActiveTab] = useState('disponibles')
   const [selectedGrupo, setSelectedGrupo] = useState(null)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
   const [isManageModalOpen, setIsManageModalOpen] = useState(false)

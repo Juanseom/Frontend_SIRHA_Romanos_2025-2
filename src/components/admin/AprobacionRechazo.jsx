@@ -9,11 +9,9 @@ const AprobacionRechazo = () => {
   const porcentajeAprobadas = estadisticas.aprobadas
   const porcentajeRechazadas = estadisticas.rechazadas
 
-  // Calcular ángulos para los segmentos
   const anguloAprobadas = (porcentajeAprobadas / 100) * 360
   const anguloRechazadas = (porcentajeRechazadas / 100) * 360
 
-  // Función para calcular coordenadas del arco
   const calcularArco = (startAngle, endAngle) => {
     const start = polarToCartesian(120, 120, 100, endAngle)
     const end = polarToCartesian(120, 120, 100, startAngle)
@@ -35,7 +33,6 @@ const AprobacionRechazo = () => {
     }
   }
 
-  // Calcular posición de los textos dentro de cada segmento
   const calcularPosicionTexto = (startAngle, endAngle, radius = 60) => {
     const angle = startAngle + (endAngle - startAngle) / 2
     const angleInRadians = ((angle - 90) * Math.PI) / 180.0

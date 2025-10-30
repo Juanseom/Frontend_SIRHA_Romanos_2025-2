@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import Layout from '../../components/common/Layout'
 import Card from '../../components/common/Card'
 import misSolicitudes from '../../assets/icons/misSolicitudes.png'
-import misHorarios from '../../assets/icons/periodos.png' // Reutilizando ícono de calendario
+import misHorarios from '../../assets/icons/periodos.png' 
 import semaforo from '../../assets/icons/semaforo.png'
 
 const StudentHome = () => {

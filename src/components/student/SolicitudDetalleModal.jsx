@@ -1,4 +1,4 @@
-const SolicitudDetalleModal = ({ isOpen, onClose, solicitud }) => {
+const SolicitudDetalleModal = ({ isOpen, onClose, solicitud, onCancelar }) => {
   if (!isOpen || !solicitud) return null
 
   const estadoColors = {
@@ -17,6 +17,8 @@ const SolicitudDetalleModal = ({ isOpen, onClose, solicitud }) => {
 
   const colorClass = estadoColors[solicitud.estado.toLowerCase()] || 'bg-gray-200'
   const estadoLabel = estadoLabels[solicitud.estado.toLowerCase()] || solicitud.estado
+
+  const puedeCancelar = solicitud.estado === 'pendiente'
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -92,8 +94,20 @@ const SolicitudDetalleModal = ({ isOpen, onClose, solicitud }) => {
             />
           </div>
 
-          {/* Botón cerrar */}
-          <div className="flex justify-center pt-2">
+          {/* Botones */}
+          <div className="flex justify-center gap-3 pt-2">
+            {puedeCancelar && (
+              <button
+                onClick={() => {
+                  if (onCancelar) {
+                    onCancelar(solicitud.id)
+                  }
+                }}
+                className="px-6 py-2 bg-red-500 text-white border border-red-600 rounded hover:bg-red-600 transition-colors font-semibold"
+              >
+                Cancelar Solicitud
+              </button>
+            )}
             <button
               onClick={onClose}
               className="px-8 py-2 bg-gray-200 border border-gray-400 rounded hover:bg-gray-300 transition-colors"

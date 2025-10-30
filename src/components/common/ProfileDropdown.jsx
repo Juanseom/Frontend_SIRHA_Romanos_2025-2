@@ -10,17 +10,13 @@ const ProfileDropdown = () => {
   const user = userStr ? JSON.parse(userStr) : null
 
   const handleLogout = () => {
-    // Mostrar confirmación
     const confirmar = window.confirm('¿Estás seguro de que deseas cerrar sesión?')
     
     if (confirmar) {
-      // Limpiar localStorage
       localStorage.removeItem('user')
       
-      // Cerrar el dropdown
       setIsOpen(false)
       
-      // Redirigir al login
       navigate('/login')
     }
   }
@@ -30,11 +26,11 @@ const ProfileDropdown = () => {
       {/* Profile Icon Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="text-white hover:text-gray-200 transition-colors"
+        className="text-white hover:text-gray-200 transition-colors flex items-center justify-center"
         aria-label="Profile"
       >
         <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
         </svg>
       </button>
 
@@ -66,7 +62,6 @@ const ProfileDropdown = () => {
             <button
               onClick={() => {
                 setIsOpen(false)
-                // Aquí puedes navegar a perfil si existe la página
                 alert('Funcionalidad de Mi Perfil - Por implementar')
               }}
               className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-3 text-gray-700 transition-colors"
@@ -80,7 +75,6 @@ const ProfileDropdown = () => {
             <button
               onClick={() => {
                 setIsOpen(false)
-                // Aquí puedes navegar a configuración si existe la página
                 alert('Funcionalidad de Configuración - Por implementar')
               }}
               className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-3 text-gray-700 transition-colors"

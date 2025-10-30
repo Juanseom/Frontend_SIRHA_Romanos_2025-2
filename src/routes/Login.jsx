@@ -15,7 +15,7 @@ const Login = () => {
   // Usuarios de ejemplo (en producción vendrían del backend)
   const usuarios = {
     // Estudiante
-    'estudiante@escuelaing.edu.co': {
+    'estudiante@mail.escuelaing.edu.co': {
       password: 'estudiante123',
       role: 'student',
       nombre: 'Juan Sebastián Ortega'
@@ -46,6 +46,17 @@ const Login = () => {
       password: 'admin123',
       role: 'admin',
       nombre: 'Admin Sistemas'
+    },
+    // Profesor
+    'profesor@escuelaing.edu.co': {
+      password: 'profesor123',
+      role: 'profesor',
+      nombre: 'Prof. Roberto Martínez'
+    },
+    'docente.sistemas@escuelaing.edu.co': {
+      password: 'profesor123',
+      role: 'profesor',
+      nombre: 'Prof. Laura Gómez'
     }
   }
 
@@ -54,7 +65,7 @@ const Login = () => {
       ...formData,
       [e.target.name]: e.target.value
     })
-    setError('') // Limpiar error al escribir
+    setError('')
   }
 
   const handleSubmit = async (e) => {
@@ -62,10 +73,8 @@ const Login = () => {
     setError('')
     setLoading(true)
 
-    // Simular delay de red
     await new Promise(resolve => setTimeout(resolve, 800))
 
-    // Validar credenciales
     const usuario = usuarios[formData.email]
     
     if (!usuario) {
@@ -80,20 +89,20 @@ const Login = () => {
       return
     }
 
-    // Login exitoso - guardar en localStorage
     localStorage.setItem('user', JSON.stringify({
       email: formData.email,
       role: usuario.role,
       nombre: usuario.nombre
     }))
 
-    // Redirigir según el rol
     if (usuario.role === 'student') {
       navigate('/student-home')
     } else if (usuario.role === 'dean') {
       navigate('/dean-home')
     } else if (usuario.role === 'admin') {
       navigate('/admin-home')
+    } else if (usuario.role === 'profesor') {
+      navigate('/profesor-home')
     }
 
     setLoading(false)
@@ -107,7 +116,6 @@ const Login = () => {
            backgroundPosition: 'center'
          }}>
       <div className="w-full max-w-md">
-        {/* Todo en un solo recuadro */}
         <div className="bg-white/85 backdrop-blur-sm rounded-xl shadow-2xl px-8 pb-8 pt-2">
           {/* Logo */}
           <div className="text-center mb-1 pb-1">
