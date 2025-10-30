@@ -114,7 +114,7 @@ const SemaforoAcademico = () => {
         },
         {
           id: 10,
-          codigo: 'PI2E',
+          codigo: 'PRI2IS',
           nombre: 'Proyecto Integrador 2 - Estrategias de Organizaciones y Procesos',
           creditos: 3,
           tipo: 'N',
