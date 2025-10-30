@@ -15,7 +15,7 @@ const Sidebar = ({ isOpen, onClose, role }) => {
     student: [
       { label: 'Mis Solicitudes', path: '/student/mis-solicitudes' },
       { label: 'Semáforo Académico', path: '/student/semaforo' },
-      { label: 'Mis Horarios', path: '/student/horarios' }
+      { label: 'Mis Horarios', path: '/student/mis-horarios' }
     ],
     admin: [
       { label: 'Gestionar Solicitudes', path: '/admin/gestionar-solicitudes' },
@@ -24,6 +24,11 @@ const Sidebar = ({ isOpen, onClose, role }) => {
       { label: 'Periodos', path: '/admin/periodos' },
       { label: 'Monitorear Grupos', path: '/admin/monitorear-grupos' },
       { label: 'Estadísticas', path: '/admin/estadisticas' }
+    ],
+    profesor: [
+      { label: 'Horario de Clases', path: '/profesor/horario' },
+      { label: 'Mis Grupos', path: '/profesor/mis-grupos' },
+      { label: 'Gestionar Solicitudes', path: '/profesor/gestionar-solicitudes' }
     ]
   }
 

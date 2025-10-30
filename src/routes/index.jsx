@@ -26,6 +26,12 @@ import Estadisticas from './admin/Estadisticas'
 import GruposYMaterias from './admin/GruposYMaterias'
 import GestionarMaterias from './admin/GestionarMaterias'
 
+// Professor routes
+import ProfesorHome from './professor/ProfesorHome'
+import GestionarSolicitudesProfesor from './professor/GestionarSolicitudes'
+import Horario from './professor/Horario'
+import MisGrupos from './professor/MisGrupos'
+
 export const router = createBrowserRouter([
   // Public routes (Login/Logout)
   {
@@ -183,5 +189,39 @@ export const router = createBrowserRouter([
       <GestionarMaterias />
     </ProtectedRoute>
   ),
-}
+  },
+
+  // ==================== PROFESSOR ROUTES ====================
+  {
+    path: '/profesor-home',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <ProfesorHome />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profesor/gestionar-solicitudes',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <GestionarSolicitudesProfesor />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profesor/horario',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <Horario />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/profesor/mis-grupos',
+    element: (
+      <ProtectedRoute allowedRoles={['profesor']}>
+        <MisGrupos />
+      </ProtectedRoute>
+    ),
+  }
 ])
