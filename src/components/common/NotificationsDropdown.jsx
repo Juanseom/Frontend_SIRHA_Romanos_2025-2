@@ -167,6 +167,18 @@ const NotificationsDropdown = () => {
         icono: '❗',
         color: 'bg-red-50 border-red-200'
       }
+    ],
+    profesor: [
+      {
+        id: 1,
+        tipo: 'solicitud',
+        titulo: 'Nueva Solicitud Pendiente',
+        mensaje: 'El estudiante Juan Ortega ha solicitado bajar la asignatura de DOSW.',
+        fecha: '2025-01-28 11:45 AM',
+        leida: false,
+        icono: '📝',
+        color: 'bg-yellow-50 border-yellow-200'
+      },
     ]
   }
 

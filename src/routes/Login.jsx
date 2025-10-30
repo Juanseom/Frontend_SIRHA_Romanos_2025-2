@@ -46,6 +46,17 @@ const Login = () => {
       password: 'admin123',
       role: 'admin',
       nombre: 'Admin Sistemas'
+    },
+    // Profesor
+    'profesor@escuelaing.edu.co': {
+      password: 'profesor123',
+      role: 'profesor',
+      nombre: 'Prof. Roberto Martínez'
+    },
+    'docente.sistemas@escuelaing.edu.co': {
+      password: 'profesor123',
+      role: 'profesor',
+      nombre: 'Prof. Laura Gómez'
     }
   }
 
@@ -94,6 +105,8 @@ const Login = () => {
       navigate('/dean-home')
     } else if (usuario.role === 'admin') {
       navigate('/admin-home')
+    } else if (usuario.role === 'profesor') {
+      navigate('/profesor-home')
     }
 
     setLoading(false)

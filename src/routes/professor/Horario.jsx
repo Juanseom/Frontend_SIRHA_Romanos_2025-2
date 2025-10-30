@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import Layout from '../../components/common/Layout'
 
-const MisHorarios = () => {
+const Horario = () => {
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('2025-2')
 
-  // Lista de semestres cursados
-  const semestres = ['2025-2', '2025-1', '2024-2', '2024-1', '2023-2']
+  // Lista de semestres
+  const semestres = ['2025-2', '2025-1', '2024-2', '2024-1']
 
   // Bloques horarios de 1.5 horas (7am - 7pm)
   const bloquesHorarios = [
@@ -19,16 +19,16 @@ const MisHorarios = () => {
     { inicio: '17:30', fin: '19:00', label: '5:30pm - 7:00pm' }
   ]
 
-  // Datos de ejemplo del horario (vendrán del backend)
+  // Datos de ejemplo del horario del profesor (vendrán del backend)
   const horarioData = {
     '2025-2': [
       {
         id: 1,
         materia: 'DOSW',
-        nombreCompleto: 'Desarrollo y Operaciones de Software',
-        profesor: 'Martín Cantor',
+        grupo: '2',
+        nombreCompleto: 'Desarrollo y Operaciones de Software - Grupo 2',
         salon: 'B-204',
-        creditos: 3,
+        estudiantes: 35,
         color: '#FFE66D',
         bloques: [
           { dia: 'Lunes', horaInicio: '08:30', horaFin: '10:00' },
@@ -37,122 +37,97 @@ const MisHorarios = () => {
       },
       {
         id: 2,
-        materia: 'PRYE',
-        nombreCompleto: 'Probabilidad y Estadística',
-        profesor: 'Laura Gómez',
-        salon: 'A-105',
-        creditos: 3,
-        color: '#A8DADC',
+        materia: 'DOSW',
+        grupo: '4',
+        nombreCompleto: 'Desarrollo y Operaciones de Software - Grupo 4',
+        salon: 'B-205',
+        estudiantes: 32,
+        color: '#FFD93D',
         bloques: [
-          { dia: 'Martes', horaInicio: '10:00', horaFin: '11:30' },
-          { dia: 'Jueves', horaInicio: '10:00', horaFin: '11:30' }
+          { dia: 'Martes', horaInicio: '14:30', horaFin: '16:00' },
+          { dia: 'Jueves', horaInicio: '14:30', horaFin: '16:00' }
         ]
       },
       {
         id: 3,
-        materia: 'CALV',
-        nombreCompleto: 'Cálculo Vectorial',
-        profesor: 'Carlos Pérez',
+        materia: 'BADA',
+        grupo: '3',
+        nombreCompleto: 'Bases de Datos - Grupo 3',
         salon: 'C-301',
-        creditos: 4,
-        color: '#F4A261',
+        estudiantes: 30,
+        color: '#A8DADC',
         bloques: [
-          { dia: 'Lunes', horaInicio: '07:00', horaFin: '08:30' },
-          { dia: 'Jueves', horaInicio: '07:00', horaFin: '08:30' },
-          { dia: 'Sábado', horaInicio: '08:30', horaFin: '10:00' }
+          { dia: 'Lunes', horaInicio: '10:00', horaFin: '11:30' },
+          { dia: 'Miércoles', horaInicio: '10:00', horaFin: '11:30' },
+          { dia: 'Viernes', horaInicio: '08:30', horaFin: '10:00' }
         ]
       },
       {
         id: 4,
-        materia: 'FPOP',
-        nombreCompleto: 'Filosofía y Cultura Popular',
-        profesor: 'Ana Torres',
-        salon: 'B-107',
-        creditos: 2,
-        color: '#E76F51',
+        materia: 'BADA',
+        grupo: '5',
+        nombreCompleto: 'Bases de Datos - Grupo 5',
+        salon: 'C-302',
+        estudiantes: 28,
+        color: '#89CFF0',
         bloques: [
-          { dia: 'Martes', horaInicio: '14:30', horaFin: '16:00' },
-          { dia: 'Viernes', horaInicio: '16:00', horaFin: '17:30' }
+          { dia: 'Martes', horaInicio: '10:00', horaFin: '11:30' },
+          { dia: 'Jueves', horaInicio: '10:00', horaFin: '11:30' },
+          { dia: 'Sábado', horaInicio: '08:30', horaFin: '10:00' }
         ]
       },
       {
         id: 5,
-        materia: 'ESCU',
-        nombreCompleto: 'Estética y Cultura',
-        profesor: 'Roberto Sánchez',
-        salon: 'A-203',
-        creditos: 2,
-        color: '#B5838D',
+        materia: 'ALGO',
+        grupo: '1',
+        nombreCompleto: 'Algoritmos y Estructuras de Datos - Grupo 1',
+        salon: 'A-105',
+        estudiantes: 40,
+        color: '#F4A261',
         bloques: [
-          { dia: 'Martes', horaInicio: '17:30', horaFin: '19:00' }
-        ]
-      },
-      {
-        id: 6,
-        materia: 'EGI3',
-        nombreCompleto: 'Inglés III',
-        profesor: 'Patricia Gutiérrez',
-        salon: 'C-201',
-        creditos: 2,
-        color: '#6A4C93',
-        bloques: [
+          { dia: 'Lunes', horaInicio: '16:00', horaFin: '17:30' },
           { dia: 'Viernes', horaInicio: '10:00', horaFin: '11:30' }
         ]
       }
     ],
     '2025-1': [
       {
-        id: 7,
-        materia: 'MATD',
-        nombreCompleto: 'Matemáticas Discretas',
-        profesor: 'Diego Morales',
-        salon: 'B-305',
-        creditos: 3,
-        color: '#4ECDC4',
+        id: 6,
+        materia: 'DOSW',
+        grupo: '1',
+        nombreCompleto: 'Desarrollo y Operaciones de Software - Grupo 1',
+        salon: 'B-203',
+        estudiantes: 38,
+        color: '#FFE66D',
         bloques: [
-          { dia: 'Lunes', horaInicio: '10:00', horaFin: '11:30' },
-          { dia: 'Miércoles', horaInicio: '10:00', horaFin: '11:30' }
+          { dia: 'Lunes', horaInicio: '07:00', horaFin: '08:30' },
+          { dia: 'Miércoles', horaInicio: '07:00', horaFin: '08:30' }
+        ]
+      },
+      {
+        id: 7,
+        materia: 'PRYE',
+        grupo: '2',
+        nombreCompleto: 'Probabilidad y Estadística - Grupo 2',
+        salon: 'A-201',
+        estudiantes: 33,
+        color: '#95E1D3',
+        bloques: [
+          { dia: 'Martes', horaInicio: '10:00', horaFin: '11:30' },
+          { dia: 'Jueves', horaInicio: '10:00', horaFin: '11:30' }
         ]
       },
       {
         id: 8,
-        materia: 'FUEC',
-        nombreCompleto: 'Fundamentos de Economía',
-        profesor: 'Fernando Acosta',
-        salon: 'A-401',
-        creditos: 3,
-        color: '#95E1D3',
-        bloques: [
-          { dia: 'Martes', horaInicio: '13:00', horaFin: '14:30' },
-          { dia: 'Jueves', horaInicio: '13:00', horaFin: '14:30' }
-        ]
-      },
-      {
-        id: 9,
         materia: 'ALGO',
-        nombreCompleto: 'Algoritmos y Estructuras de Datos',
-        profesor: 'María Rodríguez',
-        salon: 'C-102',
-        creditos: 4,
-        color: '#FFB6C1',
+        grupo: '3',
+        nombreCompleto: 'Algoritmos y Estructuras de Datos - Grupo 3',
+        salon: 'A-106',
+        estudiantes: 36,
+        color: '#E76F51',
         bloques: [
-          { dia: 'Lunes', horaInicio: '14:30', horaFin: '16:00' },
-          { dia: 'Miércoles', horaInicio: '14:30', horaFin: '16:00' }
-        ]
-      }
-    ],
-    '2024-2': [
-      {
-        id: 10,
-        materia: 'PROG',
-        nombreCompleto: 'Programación Orientada a Objetos',
-        profesor: 'Luis Martínez',
-        salon: 'B-101',
-        creditos: 3,
-        color: '#87CEEB',
-        bloques: [
-          { dia: 'Martes', horaInicio: '08:30', horaFin: '10:00' },
-          { dia: 'Jueves', horaInicio: '08:30', horaFin: '10:00' }
+          { dia: 'Viernes', horaInicio: '14:30', horaFin: '16:00' },
+          { dia: 'Sábado', horaInicio: '10:00', horaFin: '11:30' }
         ]
       }
     ]
@@ -174,14 +149,14 @@ const MisHorarios = () => {
   }
 
   // Calcular estadísticas del semestre
-  const totalMaterias = horario.length
-  const totalCreditos = horario.reduce((sum, materia) => sum + materia.creditos, 0)
-  const horasSemanales = horario.reduce((sum, materia) => sum + materia.bloques.length * 1.5, 0)
+  const totalGrupos = horario.length
+  const totalEstudiantes = horario.reduce((sum, grupo) => sum + grupo.estudiantes, 0)
+  const horasSemanales = horario.reduce((sum, grupo) => sum + grupo.bloques.length * 1.5, 0)
 
   return (
-    <Layout homeRoute="/student-home" role="student">
+    <Layout homeRoute="/profesor-home" role="profesor">
       <div className="pl-16">
-        <h1 className="text-3xl font-bold mb-4">Mis Horarios</h1>
+        <h1 className="text-3xl font-bold mb-4">Mi Horario de Clases</h1>
         <div className="w-full max-w-[1400px] h-1 bg-black mb-6"></div>
 
         {/* Estadísticas del semestre */}
@@ -191,12 +166,12 @@ const MisHorarios = () => {
             <p className="text-2xl font-bold text-blue-700">{semestreSeleccionado}</p>
           </div>
           <div className="bg-green-50 border-l-4 border-green-500 p-4 rounded">
-            <p className="text-sm text-gray-600">Total Materias</p>
-            <p className="text-2xl font-bold text-green-700">{totalMaterias}</p>
+            <p className="text-sm text-gray-600">Grupos a Cargo</p>
+            <p className="text-2xl font-bold text-green-700">{totalGrupos}</p>
           </div>
           <div className="bg-purple-50 border-l-4 border-purple-500 p-4 rounded">
-            <p className="text-sm text-gray-600">Total Créditos</p>
-            <p className="text-2xl font-bold text-purple-700">{totalCreditos}</p>
+            <p className="text-sm text-gray-600">Total Estudiantes</p>
+            <p className="text-2xl font-bold text-purple-700">{totalEstudiantes}</p>
           </div>
           <div className="bg-orange-50 border-l-4 border-orange-500 p-4 rounded">
             <p className="text-sm text-gray-600">Horas Semanales</p>
@@ -239,13 +214,13 @@ const MisHorarios = () => {
                               backgroundColor: clase ? clase.color : 'white',
                               height: '65px'
                             }}
-                            title={clase ? `${clase.nombreCompleto}\nProfesor: ${clase.profesor}\nSalón: ${clase.salon}\nCréditos: ${clase.creditos}` : ''}
+                            title={clase ? `${clase.nombreCompleto}\nSalón: ${clase.salon}\nEstudiantes: ${clase.estudiantes}` : ''}
                           >
                             {clase && (
                               <div className="flex flex-col items-center justify-center h-full">
-                                <p className="font-bold text-sm">{clase.materia}</p>
+                                <p className="font-bold text-sm">{clase.materia}-{clase.grupo}</p>
                                 <p className="text-[10px] text-gray-700">{clase.salon}</p>
-                                <p className="text-[9px] text-gray-600">{clase.creditos} créditos</p>
+                                <p className="text-[9px] text-gray-600">{clase.estudiantes} est.</p>
                               </div>
                             )}
                           </td>
@@ -260,7 +235,7 @@ const MisHorarios = () => {
 
           {/* Selector de semestres */}
           <div className="w-48">
-            <h3 className="font-semibold mb-3 text-center">Tus horarios:</h3>
+            <h3 className="font-semibold mb-3 text-center">Tus semestres:</h3>
             <div className="border border-gray-300 rounded shadow-sm">
               {semestres.map(semestre => (
                 <button
@@ -279,9 +254,9 @@ const MisHorarios = () => {
           </div>
         </div>
 
-        {/* Leyenda de materias mejorada */}
+        {/* Leyenda de grupos */}
         <div className="mt-8 max-w-[1400px]">
-          <h3 className="font-semibold mb-3 text-lg">Materias del Semestre:</h3>
+          <h3 className="font-semibold mb-3 text-lg">Mis Grupos del Semestre:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {horario.map(clase => (
               <div
@@ -293,17 +268,14 @@ const MisHorarios = () => {
                   style={{ backgroundColor: clase.color }}
                 ></div>
                 <div className="flex-1">
-                  <p className="font-bold text-base">{clase.materia}</p>
-                  <p className="text-sm text-gray-700 mt-1">{clase.nombreCompleto}</p>
+                  <p className="font-bold text-base">{clase.materia} - Grupo {clase.grupo}</p>
+                  <p className="text-sm text-gray-700 mt-1">{clase.nombreCompleto.split(' - ')[0]}</p>
                   <div className="mt-2 space-y-1">
-                    <p className="text-xs text-gray-600">
-                      👨‍🏫 Profesor: <span className="font-semibold">{clase.profesor}</span>
-                    </p>
                     <p className="text-xs text-gray-600">
                       📍 Salón: <span className="font-semibold">{clase.salon}</span>
                     </p>
                     <p className="text-xs text-gray-600">
-                      📚 Créditos: <span className="font-semibold">{clase.creditos}</span>
+                      👥 Estudiantes: <span className="font-semibold">{clase.estudiantes}</span>
                     </p>
                     <p className="text-xs text-gray-600">
                       🕐 Horario:
@@ -326,4 +298,4 @@ const MisHorarios = () => {
   )
 }
 
-export default MisHorarios
+export default Horario
