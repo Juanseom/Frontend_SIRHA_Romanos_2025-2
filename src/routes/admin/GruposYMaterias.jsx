@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Layout from '../../components/common/Layout'
 import BuscarGrupoModal from '../../components/admin/BuscarGrupoModal'
 import DetalleGrupoModal from '../../components/admin/DetalleGrupoModal'
-import CrearGrupoModal from '../../components/admin/CrearGrupoModal'
+import CrearGrupoModal from '../../components/admin/CrearGrupoModalAvanzado'
 import AsignarProfesorModal from '../../components/admin/AsignarProfesorModal'
 
 const GruposYMaterias = () => {
@@ -14,13 +14,102 @@ const GruposYMaterias = () => {
   const [isAsignarProfesorModalOpen, setIsAsignarProfesorModalOpen] = useState(false)
   const [grupoSeleccionado, setGrupoSeleccionado] = useState(null)
 
-  // ⚠️ CAMBIO IMPORTANTE: Ahora usa useState para que se puedan reflejar los cambios
+  // ⚠️ NUEVO: Estado de materias para pasarlo al modal
+  const [materias] = useState([
+    {
+      id: 1,
+      codigo: "DOSW",
+      nombre: "Desarrollo y Operaciones de Software",
+      creditos: 3,
+      programa: "Ingeniería de Sistemas",
+      departamento: "Sistemas",
+      estado: "activa"
+    },
+    {
+      id: 2,
+      codigo: "CALV",
+      nombre: "Cálculo Vectorial",
+      creditos: 4,
+      programa: "Todas las ingenierías",
+      departamento: "Matemáticas",
+      estado: "activa"
+    },
+    {
+      id: 3,
+      codigo: "PSOC",
+      nombre: "Psicología Social",
+      creditos: 2,
+      programa: "Todas las ingenierías",
+      departamento: "Humanidades",
+      estado: "activa"
+    },
+    {
+      id: 4,
+      codigo: "PRYE",
+      nombre: "Proyectos de Ingeniería",
+      creditos: 3,
+      programa: "Todas las ingenierías",
+      departamento: "Proyectos",
+      estado: "activa"
+    },
+    {
+      id: 5,
+      codigo: "ALGO",
+      nombre: "Algoritmos y Estructuras de Datos",
+      creditos: 4,
+      programa: "Ingeniería de Sistemas",
+      departamento: "Sistemas",
+      estado: "activa"
+    },
+    {
+      id: 6,
+      codigo: "1624",
+      nombre: "Análisis y Diseño de Sistemas",
+      creditos: 3,
+      programa: "Ingeniería de Sistemas",
+      departamento: "Sistemas",
+      estado: "activa"
+    },
+    {
+      id: 7,
+      codigo: "1625",
+      nombre: "Bases de Datos",
+      creditos: 3,
+      programa: "Ingeniería de Sistemas",
+      departamento: "Sistemas",
+      estado: "activa"
+    },
+    {
+      id: 8,
+      codigo: "AYSR",
+      nombre: "Arquitectura y Sistemas en Red",
+      creditos: 4,
+      programa: "Ingeniería de Sistemas",
+      departamento: "Sistemas",
+      estado: "activa"
+    },
+    {
+      id: 9,
+      codigo: "ODSC",
+      nombre: "Optimización y Diseño de Software",
+      creditos: 3,
+      programa: "Ingeniería de Sistemas",
+      departamento: "Sistemas",
+      estado: "activa"
+    }
+  ])
+
+  // Estado reactivo para grupos
   const [todosLosGrupos, setTodosLosGrupos] = useState([
     // 2025-2
     {
       id: 1,
+      materiaId: 6,
+      materiaCodigo: "1624",
       clase: '1624',
       seccion: '1-LEC ORDINARIA',
+      nombreCompleto: "1624-1",
+      codigoGrupo: "1234",
       diasHoras: 'LUN-MIE-VIER 14:00-16:00',
       aula: 'D-309',
       instructor: 'ANDRÉS MARTÍN QUINTERO',
@@ -32,8 +121,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 2,
+      materiaId: 6,
+      materiaCodigo: "1624",
       clase: '1624',
       seccion: '2-LEC ORDINARIA',
+      nombreCompleto: "1624-2",
+      codigoGrupo: "1235",
       diasHoras: 'MAR-JUE-VIER 08:00-10:00',
       aula: 'B-104',
       instructor: 'ANDRÉS MARTÍN QUINTERO',
@@ -45,8 +138,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 3,
+      materiaId: 7,
+      materiaCodigo: "1625",
       clase: '1625',
       seccion: '1-LEC ORDINARIA',
+      nombreCompleto: "1625-1",
+      codigoGrupo: "2345",
       diasHoras: 'LUN-MIE 10:00-12:00',
       aula: 'A-205',
       instructor: 'MARÍA LÓPEZ GARCÍA',
@@ -58,8 +155,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 4,
+      materiaId: 3,
+      materiaCodigo: "PSOC",
       clase: 'PSOC',
       seccion: '1-LEC ORDINARIA',
+      nombreCompleto: "PSOC-1",
+      codigoGrupo: "3456",
       diasHoras: 'MAR-JUE 14:00-16:00',
       aula: 'C-302',
       instructor: 'CARLOS PÉREZ RODRÍGUEZ',
@@ -71,8 +172,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 5,
+      materiaId: 1,
+      materiaCodigo: "DOSW",
       clase: 'DOSW',
       seccion: '2-LEC ORDINARIA',
+      nombreCompleto: "DOSW-2",
+      codigoGrupo: "4567",
       diasHoras: 'LUN-MIE-VIER 16:00-18:00',
       aula: 'B-204',
       instructor: 'ANA TORRES GONZÁLEZ',
@@ -84,8 +189,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 6,
+      materiaId: 4,
+      materiaCodigo: "PRYE",
       clase: 'PRYE',
       seccion: '1-LEC ORDINARIA',
+      nombreCompleto: "PRYE-1",
+      codigoGrupo: "5678",
       diasHoras: 'VIER 14:00-18:00',
       aula: 'A-401',
       instructor: 'ROBERTO SÁNCHEZ VARGAS',
@@ -97,8 +206,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 7,
+      materiaId: 8,
+      materiaCodigo: "AYSR",
       clase: 'AYSR',
       seccion: '1-LEC ORDINARIA',
+      nombreCompleto: "AYSR-1",
+      codigoGrupo: "6789",
       diasHoras: 'LUN-MIE 08:00-10:00',
       aula: 'C-201',
       instructor: 'LAURA GÓMEZ MARTÍNEZ',
@@ -110,8 +223,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 8,
+      materiaId: 9,
+      materiaCodigo: "ODSC",
       clase: 'ODSC',
       seccion: '2-LEC ORDINARIA',
+      nombreCompleto: "ODSC-2",
+      codigoGrupo: "7890",
       diasHoras: 'MAR-JUE 10:00-12:00',
       aula: 'D-105',
       instructor: 'DIEGO MORALES CASTRO',
@@ -123,8 +240,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 9,
+      materiaId: 1,
+      materiaCodigo: "DOSW",
       clase: 'DOSW',
       seccion: '3-LEC ORDINARIA',
+      nombreCompleto: "DOSW-3",
+      codigoGrupo: "8901",
       diasHoras: 'LUN-VIER 10:00-12:00',
       aula: 'B-302',
       instructor: 'PATRICIA GUTIÉRREZ DÍAZ',
@@ -136,8 +257,12 @@ const GruposYMaterias = () => {
     },
     {
       id: 10,
+      materiaId: 3,
+      materiaCodigo: "PSOC",
       clase: 'PSOC',
       seccion: '2-LEC ORDINARIA',
+      nombreCompleto: "PSOC-2",
+      codigoGrupo: "9012",
       diasHoras: 'MIE 14:00-18:00',
       aula: 'A-108',
       instructor: 'FERNANDO ACOSTA RUIZ',
@@ -146,138 +271,6 @@ const GruposYMaterias = () => {
       estado: 'cerrado',
       cuposOcupados: 0,
       cuposTotales: 30
-    },
-    // 2025-1
-    {
-      id: 11,
-      clase: '1624',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE 14:00-16:00',
-      aula: 'D-201',
-      instructor: 'SOFÍA RAMÍREZ LÓPEZ',
-      color: 'verde',
-      ciclo: '2025-1',
-      estado: 'abierto',
-      cuposOcupados: 20,
-      cuposTotales: 35
-    },
-    {
-      id: 12,
-      clase: 'PRYE',
-      seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE 08:00-10:00',
-      aula: 'A-105',
-      instructor: 'JUAN PABLO CONTRERAS',
-      color: 'azul',
-      ciclo: '2025-1',
-      estado: 'completo',
-      cuposOcupados: 30,
-      cuposTotales: 30
-    },
-    {
-      id: 13,
-      clase: 'AYSR',
-      seccion: '2-LEC ORDINARIA',
-      diasHoras: 'VIER 14:00-18:00',
-      aula: 'C-401',
-      instructor: 'ELIZABETH CORREA SUÁREZ',
-      color: 'verde',
-      ciclo: '2025-1',
-      estado: 'abierto',
-      cuposOcupados: 12,
-      cuposTotales: 25
-    },
-    {
-      id: 14,
-      clase: 'DOSW',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE-VIER 10:00-12:00',
-      aula: 'B-203',
-      instructor: 'NIKOLAS MARTÍNEZ',
-      color: 'azul',
-      ciclo: '2025-1',
-      estado: 'cerrado',
-      cuposOcupados: 0,
-      cuposTotales: 40
-    },
-    {
-      id: 15,
-      clase: 'ODSC',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE 14:00-16:00',
-      aula: 'D-301',
-      instructor: 'SANDRA CASALLAS AMAYA',
-      color: 'verde',
-      ciclo: '2025-1',
-      estado: 'abierto',
-      cuposOcupados: 18,
-      cuposTotales: 30
-    },
-    {
-      id: 16,
-      clase: '1625',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-VIER 08:00-10:00',
-      aula: 'A-202',
-      instructor: 'IGNACIO CASTILLO RENDÓN',
-      color: 'azul',
-      ciclo: '2025-1',
-      estado: 'completo',
-      cuposOcupados: 35,
-      cuposTotales: 35
-    },
-    // 2024-2
-    {
-      id: 17,
-      clase: '1624',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE 14:00-16:00',
-      aula: 'D-101',
-      instructor: 'JUAN SEBASTIÁN ORTEGA',
-      color: 'verde',
-      ciclo: '2024-2',
-      estado: 'cerrado',
-      cuposOcupados: 0,
-      cuposTotales: 40
-    },
-    {
-      id: 18,
-      clase: 'DOSW',
-      seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE 10:00-12:00',
-      aula: 'B-302',
-      instructor: 'MARÍA BELÉN QUINTERO',
-      color: 'azul',
-      ciclo: '2024-2',
-      estado: 'cerrado',
-      cuposOcupados: 0,
-      cuposTotales: 35
-    },
-    {
-      id: 19,
-      clase: 'PSOC',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-VIER 08:00-10:00',
-      aula: 'C-205',
-      instructor: 'CARLOS EDUARDO DÍAZ',
-      color: 'verde',
-      ciclo: '2024-2',
-      estado: 'cerrado',
-      cuposOcupados: 0,
-      cuposTotales: 30
-    },
-    {
-      id: 20,
-      clase: 'PRYE',
-      seccion: '1-LEC ORDINARIA',
-      diasHoras: 'MIE 14:00-18:00',
-      aula: 'A-401',
-      instructor: 'ANDREA JIMÉNEZ RUIZ',
-      color: 'azul',
-      ciclo: '2024-2',
-      estado: 'cerrado',
-      cuposOcupados: 0,
-      cuposTotales: 25
     }
   ])
 
@@ -298,7 +291,6 @@ const GruposYMaterias = () => {
     setIsAsignarProfesorModalOpen(true)
   }
 
-  // ✅ FUNCIÓN MEJORADA: Ahora actualiza el estado correctamente
   const handleActualizarProfesor = (nuevoProfesor) => {
     if (!grupoSeleccionado) return
 
@@ -312,40 +304,37 @@ const GruposYMaterias = () => {
     
     setIsAsignarProfesorModalOpen(false)
     setGrupoSeleccionado(null)
-    
-    // Feedback visual (opcional)
     alert(`✅ Profesor asignado exitosamente a ${grupoSeleccionado.clase} - ${grupoSeleccionado.seccion}`)
   }
 
-  // ✅ FUNCIÓN MEJORADA: Ahora elimina el grupo del estado
   const handleEliminarGrupo = (grupoId) => {
     const grupo = todosLosGrupos.find(g => g.id === grupoId)
     
     if (confirm(`¿Está seguro de eliminar el grupo ${grupo?.clase} - ${grupo?.seccion}?`)) {
       setTodosLosGrupos(grupos => grupos.filter(g => g.id !== grupoId))
-      
-      // Feedback visual
       alert('✅ Grupo eliminado exitosamente')
     }
   }
 
-  // ✅ FUNCIÓN MEJORADA: Ahora agrega el nuevo grupo al estado
   const handleCrearGrupo = (nuevoGrupo) => {
-    // Generar nuevo ID
     const nuevoId = Math.max(...todosLosGrupos.map(g => g.id)) + 1
     
     const grupoCompleto = {
       id: nuevoId,
       ...nuevoGrupo,
-      cuposOcupados: 0, // Inicia sin estudiantes
-      color: nuevoId % 2 === 0 ? 'azul' : 'verde' // Alterna colores
+      clase: nuevoGrupo.materiaCodigo,
+      cuposOcupados: 0,
+      color: nuevoId % 2 === 0 ? 'azul' : 'verde',
+      // Convertir horarios a formato simple para visualización
+      diasHoras: nuevoGrupo.horarios?.map(h => 
+        `${h.dia.substring(0, 3)} ${h.horaInicio}-${h.horaFin}`
+      ).join(', ') || 'Sin horarios',
+      aula: nuevoGrupo.horarios?.[0]?.salon || 'Sin asignar'
     }
     
     setTodosLosGrupos(grupos => [...grupos, grupoCompleto])
     setIsCrearModalOpen(false)
-    
-    // Feedback visual
-    alert(`✅ Grupo ${grupoCompleto.clase} - ${grupoCompleto.seccion} creado exitosamente`)
+    alert(`✅ Grupo ${grupoCompleto.nombreCompleto} creado exitosamente`)
   }
 
   return (
@@ -495,10 +484,12 @@ const GruposYMaterias = () => {
         grupo={grupoSeleccionado}
       />
 
+      {/* ⚠️ CORRECCIÓN: Ahora pasa las materias como prop */}
       <CrearGrupoModal
         isOpen={isCrearModalOpen}
         onClose={() => setIsCrearModalOpen(false)}
         onCrear={handleCrearGrupo}
+        materias={materias}
       />
 
       <AsignarProfesorModal
