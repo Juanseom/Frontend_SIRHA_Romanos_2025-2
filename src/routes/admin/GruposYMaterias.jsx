@@ -482,6 +482,7 @@ const GruposYMaterias = () => {
         isOpen={isDetalleModalOpen}
         onClose={() => setIsDetalleModalOpen(false)}
         grupo={grupoSeleccionado}
+        materias={materias}
       />
 
       {/* ⚠️ CORRECCIÓN: Ahora pasa las materias como prop */}

@@ -338,7 +338,7 @@ const GruposYMaterias = () => {
   }
 
   return (
-    <Layout homeRoute="/dean-home" role="dean">
+    <Layout homeRoute="/admin-home" role="admin">
       <div className="pl-16">
         <h1 className="text-3xl font-bold mb-4">Gestión de Grupos</h1>
         <div className="w-full max-w-[1400px] h-1 bg-black mb-8"></div>
@@ -482,6 +482,7 @@ const GruposYMaterias = () => {
         isOpen={isDetalleModalOpen}
         onClose={() => setIsDetalleModalOpen(false)}
         grupo={grupoSeleccionado}
+        materias={materias}
       />
 
       {/* ⚠️ CORRECCIÓN: Ahora pasa las materias como prop */}
