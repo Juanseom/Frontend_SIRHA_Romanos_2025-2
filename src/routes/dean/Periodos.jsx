@@ -1,8 +1,21 @@
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import Layout from '../../components/common/Layout'
 import AddPeriodoModal from '../../components/dean/AddPeriodoModal'
 
 const Periodos = () => {
+  const location = useLocation()
+
+  // Detectar el rol desde la ruta actual
+  const detectRole = () => {
+    if (location.pathname.includes('/dean/')) return 'dean'
+    if (location.pathname.includes('/admin/')) return 'admin'
+    return 'admin' // default
+  }
+
+  const role = detectRole()
+  const homeRoute = role === 'dean' ? '/dean-home' : '/admin-home'
+
   const [periodos, setPeriodos] = useState([
     {
       id: 1,
@@ -128,7 +141,7 @@ const Periodos = () => {
   }
 
   return (
-    <Layout homeRoute="/admin-home" role="admin">
+    <Layout homeRoute={homeRoute} role={role}>
       <div className="pl-16">
         {/* Header */}
         <div className="flex justify-between items-center mb-4">

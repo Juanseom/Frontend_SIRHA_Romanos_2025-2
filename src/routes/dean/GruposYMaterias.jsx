@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import Layout from '../../components/common/Layout'
 import BuscarGrupoModal from '../../components/admin/BuscarGrupoModal'
 import DetalleGrupoModal from '../../components/admin/DetalleGrupoModal'
@@ -6,6 +7,7 @@ import CrearGrupoModal from '../../components/admin/CrearGrupoModalAvanzado'
 import AsignarProfesorModal from '../../components/admin/AsignarProfesorModal'
 
 const GruposYMaterias = () => {
+  const location = useLocation()
   const [estadoSeleccionado, setEstadoSeleccionado] = useState('todos')
   const [cicloSeleccionado, setCicloSeleccionado] = useState('2025-2')
   const [isBuscarModalOpen, setIsBuscarModalOpen] = useState(false)
@@ -13,6 +15,15 @@ const GruposYMaterias = () => {
   const [isCrearModalOpen, setIsCrearModalOpen] = useState(false)
   const [isAsignarProfesorModalOpen, setIsAsignarProfesorModalOpen] = useState(false)
   const [grupoSeleccionado, setGrupoSeleccionado] = useState(null)
+
+  const detectRole = () => {
+    if (location.pathname.includes('/dean/')) return 'dean'
+    if (location.pathname.includes('/admin/')) return 'admin'
+    return 'admin'
+  }
+
+  const role = detectRole()
+  const homeRoute = role === 'dean' ? '/dean-home' : '/admin-home'
 
   const [materias] = useState([
     {
@@ -248,8 +259,8 @@ const GruposYMaterias = () => {
       instructor: 'PATRICIA GUTIÉRREZ DÍAZ',
       color: 'verde',
       ciclo: '2025-2',
-      estado: 'completo',
-      cuposOcupados: 40,
+      estado: 'abierto',
+      cuposOcupados: 12,
       cuposTotales: 40
     },
     {
@@ -333,7 +344,7 @@ const GruposYMaterias = () => {
   }
 
   return (
-    <Layout homeRoute="/admin-home" role="admin">
+    <Layout homeRoute={homeRoute} role={role}>
       <div className="pl-16">
         <h1 className="text-3xl font-bold mb-4">Gestión de Grupos</h1>
         <div className="w-full max-w-[1400px] h-1 bg-black mb-8"></div>
