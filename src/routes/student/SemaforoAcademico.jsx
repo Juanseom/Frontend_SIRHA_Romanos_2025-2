@@ -42,7 +42,7 @@ const SemaforoAcademico = () => {
         },
         {
           id: 3,
-          codigo: 'CADI',
+          codigo: 'CALD',
           nombre: 'Cálculo Diferencial',
           creditos: 3,
           tipo: 'H',
@@ -62,8 +62,8 @@ const SemaforoAcademico = () => {
         },
         {
           id: 5,
-          codigo: 'FIGE1',
-          nombre: 'Física General 2',
+          codigo: 'FUME',
+          nombre: 'Fundamentos de Mecánica',
           creditos: 3,
           tipo: 'H',
           estado: 'aprobada',
@@ -72,7 +72,7 @@ const SemaforoAcademico = () => {
         },
         {
           id: 6,
-          codigo: 'FUCO1',
+          codigo: 'FCO1',
           nombre: 'Fundamentos de la comunicación 1',
           creditos: 2,
           tipo: 'N',
@@ -87,7 +87,7 @@ const SemaforoAcademico = () => {
       materias: [
         {
           id: 7,
-          codigo: 'FUPB',
+          codigo: 'FUPR',
           nombre: 'Fundamentos de Proyectos',
           creditos: 2,
           tipo: 'H',
@@ -105,7 +105,7 @@ const SemaforoAcademico = () => {
         },
         {
           id: 9,
-          codigo: 'OSDL',
+          codigo: 'ODSC',
           nombre: 'Organización de los Sistemas de computación',
           creditos: 3,
           tipo: 'H',
@@ -146,7 +146,7 @@ const SemaforoAcademico = () => {
       materias: [
         {
           id: 13,
-          codigo: 'ARSO',
+          codigo: 'AYSR',
           nombre: 'Arquitectura y Servicios de Red',
           creditos: 4,
           tipo: 'H',
@@ -155,7 +155,7 @@ const SemaforoAcademico = () => {
         },
         {
           id: 14,
-          codigo: 'PRIN',
+          codigo: 'PTIA',
           nombre: 'Principios y Tecnologías IA',
           creditos: 3,
           tipo: 'H',
@@ -164,7 +164,7 @@ const SemaforoAcademico = () => {
         },
         {
           id: 15,
-          codigo: 'ARSS',
+          codigo: 'ARSW',
           nombre: 'Arquitectura de Software',
           creditos: 4,
           tipo: 'H',
@@ -205,8 +205,8 @@ const SemaforoAcademico = () => {
       materias: [
         {
           id: 19,
-          codigo: 'COJA',
-          nombre: 'Cojines Reales Institucional politica',
+          codigo: 'EGI2',
+          nombre: 'Inglés 2',
           creditos: 2,
           tipo: 'N',
           estado: 'pendiente',

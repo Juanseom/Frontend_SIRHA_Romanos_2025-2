@@ -30,8 +30,8 @@ const MisSolicitudes = () => {
         nombreMateria: 'CALV',
         grupoClase: '4144'
       },
-      descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
-      respuesta: 'No se qué escribir, pero aquí está la razón de por qué se la aprobaron o nada.'
+      descripcion: 'Necesito bajar esta materia por razones personales.',
+      respuesta: 'El cambio fue realizado.'
     },
     {
       id: 2,
@@ -82,7 +82,7 @@ const MisSolicitudes = () => {
       },
       aInscribir: null,
       descripcion: 'Solicito bajar esta materia.',
-      respuesta: 'No se qué escribir, pero aquí está la razón de por qué se la rechazaron.'
+      respuesta: 'El profesor no aprobó la solicitud debido a baja justificación.'
     },
     {
       id: 5,
@@ -101,7 +101,7 @@ const MisSolicitudes = () => {
         nombreMateria: 'CALV',
         grupoClase: '4144'
       },
-      descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
+      descripcion: 'Cambio de grupo por conflicto de horario.',
       respuesta: ''
     },
     {

@@ -142,7 +142,7 @@ const MisHorarios = () => {
     '2024-2': [
       {
         id: 10,
-        materia: 'PROG',
+        materia: 'POOB',
         nombreCompleto: 'Programación Orientada a Objetos',
         profesor: 'Luis Martínez',
         salon: 'B-101',
