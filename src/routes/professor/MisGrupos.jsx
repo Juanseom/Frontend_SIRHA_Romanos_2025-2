@@ -2,14 +2,16 @@ import { useState } from 'react'
 import Layout from '../../components/common/Layout'
 import ProgressBar from '../../components/common/ProgressBar'
 import GroupInfoModal from '../../components/dean/GroupInfoModal'
+import ManageGroupModal from '../../components/dean/ManageGroupModal'
 
 const MisGrupos = () => {
   const [filterMateria, setFilterMateria] = useState('todas')
   const [selectedGrupo, setSelectedGrupo] = useState(null)
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false)
+  const [isManageModalOpen, setIsManageModalOpen] = useState(false)
 
   // Datos de ejemplo de los grupos que enseña el profesor (vendrán del backend)
-  const grupos = [
+  const [grupos, setGrupos] = useState([
     {
       id: 1,
       codigo: 'DOSW - 2',
@@ -90,7 +92,7 @@ const MisGrupos = () => {
       aula: 'A-105',
       periodo: '2025-2'
     }
-  ]
+  ])
 
   // Obtener lista única de materias para el filtro
   const materiasUnicas = ['todas', ...new Set(grupos.map(g => g.materia.split(' - ')[0]))]
@@ -108,6 +110,22 @@ const MisGrupos = () => {
   const handleGrupoClick = (grupo) => {
     setSelectedGrupo(grupo)
     setIsInfoModalOpen(true)
+  }
+
+  const handleModificar = () => {
+    setIsInfoModalOpen(false)
+    setIsManageModalOpen(true)
+  }
+
+  const handleSaveGroup = (updatedGrupo) => {
+    setGrupos(grupos.map(g => g.id === updatedGrupo.id ? {
+      ...updatedGrupo,
+      porcentaje: Math.round((updatedGrupo.cuposOcupados / updatedGrupo.cuposTotales) * 100)
+    } : g))
+  }
+
+  const handleDeleteGroup = (grupoId) => {
+    setGrupos(grupos.filter(g => g.id !== grupoId))
   }
 
   return (
@@ -223,7 +241,16 @@ const MisGrupos = () => {
         isOpen={isInfoModalOpen}
         onClose={() => setIsInfoModalOpen(false)}
         grupo={selectedGrupo}
-        onModificar={null} // Profesor no puede modificar grupos
+        onModificar={handleModificar}
+      />
+
+      {/* Modal de administración del grupo */}
+      <ManageGroupModal
+        isOpen={isManageModalOpen}
+        onClose={() => setIsManageModalOpen(false)}
+        grupo={selectedGrupo}
+        onSave={handleSaveGroup}
+        onDelete={handleDeleteGroup}
       />
     </Layout>
   )
