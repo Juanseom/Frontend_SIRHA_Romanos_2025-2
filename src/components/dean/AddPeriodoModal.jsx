@@ -41,7 +41,6 @@ const AddPeriodoModal = ({ isOpen, onClose, onAdd }) => {
       nuevosErrores.horaFin = 'La hora de fin es obligatoria'
     }
 
-    // Validar que la fecha de fin sea después de la de inicio
     if (formData.fechaInicio && formData.fechaFin && formData.horaInicio && formData.horaFin) {
       const inicio = new Date(`${formData.fechaInicio}T${formData.horaInicio}`)
       const fin = new Date(`${formData.fechaFin}T${formData.horaFin}`)
@@ -62,7 +61,6 @@ const AddPeriodoModal = ({ isOpen, onClose, onAdd }) => {
       return
     }
 
-    // Formatear las fechas para mostrar
     const formatearFecha = (fecha, hora) => {
       const date = new Date(`${fecha}T${hora}`)
       const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
@@ -83,7 +81,6 @@ const AddPeriodoModal = ({ isOpen, onClose, onAdd }) => {
 
     onAdd(nuevoPeriodo)
     
-    // Limpiar formulario
     setFormData({
       nombre: '',
       fechaInicio: '',

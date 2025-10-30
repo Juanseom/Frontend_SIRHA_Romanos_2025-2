@@ -14,7 +14,6 @@ const GruposYMaterias = () => {
   const [isAsignarProfesorModalOpen, setIsAsignarProfesorModalOpen] = useState(false)
   const [grupoSeleccionado, setGrupoSeleccionado] = useState(null)
 
-  // ⚠️ NUEVO: Estado de materias para pasarlo al modal
   const [materias] = useState([
     {
       id: 1,
@@ -99,9 +98,8 @@ const GruposYMaterias = () => {
     }
   ])
 
-  // Estado reactivo para grupos
   const [todosLosGrupos, setTodosLosGrupos] = useState([
-    // 2025-2
+
     {
       id: 1,
       materiaId: 6,
@@ -274,7 +272,6 @@ const GruposYMaterias = () => {
     }
   ])
 
-  // Filtrar grupos según ciclo y estado seleccionados
   const gruposFiltrados = todosLosGrupos.filter(grupo => {
     const cumpleCiclo = grupo.ciclo === cicloSeleccionado
     const cumpleEstado = estadoSeleccionado === 'todos' || grupo.estado === estadoSeleccionado
@@ -325,7 +322,6 @@ const GruposYMaterias = () => {
       clase: nuevoGrupo.materiaCodigo,
       cuposOcupados: 0,
       color: nuevoId % 2 === 0 ? 'azul' : 'verde',
-      // Convertir horarios a formato simple para visualización
       diasHoras: nuevoGrupo.horarios?.map(h => 
         `${h.dia.substring(0, 3)} ${h.horaInicio}-${h.horaFin}`
       ).join(', ') || 'Sin horarios',
@@ -485,7 +481,6 @@ const GruposYMaterias = () => {
         materias={materias}
       />
 
-      {/* ⚠️ CORRECCIÓN: Ahora pasa las materias como prop */}
       <CrearGrupoModal
         isOpen={isCrearModalOpen}
         onClose={() => setIsCrearModalOpen(false)}

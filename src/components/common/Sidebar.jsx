@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 const Sidebar = ({ isOpen, onClose, role }) => {
   const navigate = useNavigate()
 
-  // Opciones según el rol
   const menuOptions = {
     dean: [
       { label: 'Gestionar Solicitudes', path: '/dean/gestionar-solicitudes' },

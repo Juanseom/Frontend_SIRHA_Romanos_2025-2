@@ -189,19 +189,18 @@ const NotificationsDropdown = () => {
   const notificacionesNoLeidas = notificaciones.filter(n => !n.leida).length
 
   const marcarComoLeida = (id) => {
-    // En producción, aquí harías una llamada al backend
+    // llamada al backend
     console.log('Marcar notificación como leída:', id)
   }
 
   const marcarTodasComoLeidas = () => {
-    // En producción, aquí harías una llamada al backend
+    // llamada al backend
     console.log('Marcar todas como leídas')
     setIsOpen(false)
   }
 
   const verTodasLasNotificaciones = () => {
     setIsOpen(false)
-    // Navegar a página de notificaciones según el rol
     if (userRole === 'student') {
       navigate('/student/notificaciones')
     } else if (userRole === 'dean') {

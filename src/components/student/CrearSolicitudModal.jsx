@@ -46,7 +46,6 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
     setFormData({ ...formData, materiaSeleccionada: value })
     setErrores({ ...errores, materia: '' })
 
-    // Si es cambio de grupo o bajar, llenar automáticamente retirar
     if (tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Bajar Asignatura') {
       const materia = materiasInscritas.find(m => m.codigo === value)
       if (materia) {
@@ -58,7 +57,6 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
         })
       }
     }
-    // Si es inscribir, llenar inscribir
     else if (tipoSeleccionado === 'Inscribir Asignatura') {
       const materia = materiasParaInscribir.find(m => m.codigo === value)
       if (materia) {
@@ -81,7 +79,6 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
     setErrores({ ...errores, [field]: '' })
   }
 
-  // Obtener materias según el tipo
   const getMateriasDisponibles = () => {
     if (tipoSeleccionado === 'Cambio Grupo' || tipoSeleccionado === 'Bajar Asignatura') {
       return materiasInscritas
@@ -91,7 +88,6 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
     return []
   }
 
-  // Obtener grupos disponibles
   const getGruposDisponibles = () => {
     if (!formData.materiaSeleccionada) return []
 
@@ -142,7 +138,6 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
       return
     }
 
-    // Crear objeto de solicitud
     const nuevaSolicitud = {
       id: Date.now(),
       tipo: formData.tipo,
@@ -173,7 +168,6 @@ const CrearSolicitudModal = ({ isOpen, onClose, onCreate, periodoActual }) => {
 
     onCreate(nuevaSolicitud)
     
-    // Limpiar formulario
     setFormData({
       tipo: 'Cambio Grupo',
       materiaSeleccionada: '',

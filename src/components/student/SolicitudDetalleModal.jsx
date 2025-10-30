@@ -18,7 +18,6 @@ const SolicitudDetalleModal = ({ isOpen, onClose, solicitud, onCancelar }) => {
   const colorClass = estadoColors[solicitud.estado.toLowerCase()] || 'bg-gray-200'
   const estadoLabel = estadoLabels[solicitud.estado.toLowerCase()] || solicitud.estado
 
-  // Verificar si la solicitud puede ser cancelada (solo pendientes)
   const puedeCancelar = solicitud.estado === 'pendiente'
 
   return (

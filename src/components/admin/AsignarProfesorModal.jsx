@@ -31,7 +31,7 @@ const AsignarProfesorModal = ({ isOpen, onClose, grupo, onAsignar }) => {
   const handleAsignar = () => {
     if (profesorSeleccionado && profesorSeleccionado !== grupo.instructor) {
       onAsignar(profesorSeleccionado)
-      setProfesorSeleccionado('') // Reset
+      setProfesorSeleccionado('')
     }
   }
 

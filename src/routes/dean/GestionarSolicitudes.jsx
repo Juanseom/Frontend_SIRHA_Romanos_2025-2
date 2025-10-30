@@ -9,7 +9,6 @@ const GestionarSolicitudes = () => {
   const [selectedSolicitud, setSelectedSolicitud] = useState(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Rol fijo para decano
   const role = 'dean'
   const homeRoute = '/dean-home'
 
@@ -120,7 +119,6 @@ const GestionarSolicitudes = () => {
       observacion: 'El profesor del grupo 6 tiene mejor metodología según comentarios.',
       estado: 'pendiente'
     },
-    // Solicitudes históricas
     {
       id: 8,
       nombre: 'Carlos Rodríguez',
@@ -174,11 +172,9 @@ const GestionarSolicitudes = () => {
     }
   ])
 
-  // Función para filtrar y ordenar solicitudes
   const getFilteredAndSortedSolicitudes = () => {
     let filtered = [...solicitudes]
     
-    // Filtrar por estado
     if (filterEstado === 'pendientes') {
       filtered = filtered.filter(s => s.estado === 'pendiente')
     } else if (filterEstado === 'aprobadas') {
@@ -188,14 +184,11 @@ const GestionarSolicitudes = () => {
     } else if (filterEstado === 'info-solicitada') {
       filtered = filtered.filter(s => s.estado === 'info-solicitada')
     }
-    // 'todas' no filtra por estado
     
-    // Filtrar por tipo
     if (filterTipo !== 'todas') {
       filtered = filtered.filter(s => s.tipo === filterTipo)
     }
     
-    // Ordenar
     if (sortBy === 'fecha') {
       filtered.sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
     } else if (sortBy === 'prioridad') {
@@ -213,7 +206,6 @@ const GestionarSolicitudes = () => {
     setIsModalOpen(true)
   }
 
-  // Manejar aprobación
   const handleAprobar = (solicitudId, motivo) => {
     setSolicitudes(solicitudes.map(sol => 
       sol.id === solicitudId 
@@ -228,7 +220,6 @@ const GestionarSolicitudes = () => {
     alert('Solicitud aprobada exitosamente')
   }
 
-  // Manejar rechazo
   const handleRechazar = (solicitudId, motivo) => {
     setSolicitudes(solicitudes.map(sol => 
       sol.id === solicitudId 
@@ -243,7 +234,6 @@ const GestionarSolicitudes = () => {
     alert('Solicitud rechazada')
   }
 
-  // Manejar solicitud de información adicional
   const handleSolicitarInfo = (solicitudId, informacionRequerida) => {
     setSolicitudes(solicitudes.map(sol => 
       sol.id === solicitudId 

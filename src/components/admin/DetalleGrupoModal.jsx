@@ -1,12 +1,9 @@
 const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
   if (!isOpen || !grupo) return null
 
-  // Buscar la información de la materia correspondiente
   const materiaInfo = materias.find(m => m.id === grupo.materiaId) || {}
 
-  // Datos del grupo extendidos
   const detalleCompleto = {
-    // ========== INFORMACIÓN DE LA MATERIA ==========
     materia: {
       codigo: materiaInfo.codigo || grupo.materiaCodigo || grupo.clase,
       nombre: materiaInfo.nombre || 'Materia sin nombre',
@@ -15,7 +12,6 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
       programa: materiaInfo.programa || 'Sin programa'
     },
     
-    // ========== INFORMACIÓN DEL GRUPO ==========
     grupo: {
       nombreCompleto: grupo.nombreCompleto || `${grupo.clase}-1`,  // Ej: "DOSW-1", "1624-1"
       numeroGrupo: grupo.nombreCompleto?.split('-')[1] || '1',      // Ej: "1", "2"
@@ -25,7 +21,6 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
       codigoGrupo: grupo.codigoGrupo || '1234'
     },
 
-    // ========== DETALLES ACADÉMICOS ==========
     detalles: {
       grado: 'Pregrado',
       ubicacion: 'Sede Principal',
@@ -34,7 +29,6 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
       fechas: '11/8/2025-17/12/2025'
     },
     
-    // ========== DISPONIBILIDAD ==========
     disponibilidad: {
       capacidadClase: grupo.cuposTotales || 30,
       plazasDisponibles: (grupo.cuposTotales || 30) - (grupo.cuposOcupados || 0),
@@ -44,7 +38,6 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
       totalIntercepciones: 0
     },
     
-    // ========== INFORMACIÓN DE HORARIOS Y PROFESOR ==========
     horarios: [
       { 
         dia: 'Lunes', 
@@ -61,7 +54,6 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
     ]
   }
 
-  // Calcular el total de cupos
   const totalCupos = detalleCompleto.disponibilidad.cuposOcupados + detalleCompleto.disponibilidad.plazasDisponibles
 
   return (
@@ -81,7 +73,7 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
         {/* Contenido */}
         <div className="p-6 space-y-6">
           
-          {/* ========== SECCIÓN 1: INFORMACIÓN DE LA MATERIA ========== */}
+          {/* SECCIÓN 1: INFORMACIÓN DE LA MATERIA */}
           <div className="bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
             <h3 className="text-lg font-bold text-blue-900 mb-3">📚 Información de la Materia</h3>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm">
@@ -108,7 +100,7 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
             </div>
           </div>
 
-          {/* ========== SECCIÓN 2: INFORMACIÓN DEL GRUPO ========== */}
+          {/* SECCIÓN 2: INFORMACIÓN DEL GRUPO */}
           <div className="bg-green-50 border-2 border-green-200 rounded-lg p-4">
             <h3 className="text-lg font-bold text-green-900 mb-3">👥 Información del Grupo</h3>
             <div className="grid grid-cols-3 gap-x-8 gap-y-3 text-sm">
@@ -147,7 +139,7 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
             </div>
           </div>
 
-          {/* ========== SECCIÓN 3: DETALLES GENERALES ========== */}
+          {/* SECCIÓN 3: DETALLES GENERALES */}
           <div className="grid grid-cols-3 gap-x-8 gap-y-3 text-sm border-b pb-4">
             <div>
               <span className="font-semibold text-gray-700">Grado:</span>
@@ -175,7 +167,7 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
             </div>
           </div>
 
-          {/* ========== SECCIÓN 4: DISPONIBILIDAD ========== */}
+          {/* SECCIÓN 4: DISPONIBILIDAD */}
           <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-4">
             <h3 className="text-lg font-bold text-purple-900 mb-4">📊 Disponibilidad</h3>
             <div className="grid grid-cols-2 gap-4">
@@ -205,7 +197,7 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
             </div>
           </div>
 
-          {/* ========== SECCIÓN 5: HORARIOS E INSTRUCTOR ========== */}
+          {/* SECCIÓN 5: HORARIOS E INSTRUCTOR */}
           <div className="bg-gray-50 border-2 border-gray-200 rounded-lg overflow-hidden">
             <div className="bg-blue-600 text-white px-4 py-2">
               <h3 className="font-bold">🕐 Información de Clase</h3>

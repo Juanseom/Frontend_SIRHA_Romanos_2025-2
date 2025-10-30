@@ -9,7 +9,7 @@ const Periodos = () => {
       nombre: 'Periodo de Inscripción - Semestre 2025-2',
       inicio: '2025-10-15T08:00',
       fin: '2025-10-15T09:00',
-      estado: 'activo', // 'activo', 'proximo', 'finalizado'
+      estado: 'activo', 
       tipo: 'inscripcion'
     },
     {
@@ -63,13 +63,11 @@ const Periodos = () => {
   }
 
   const handleEliminarPeriodo = (periodoId, e) => {
-    e.stopPropagation() // Evitar que se ejecute handlePeriodoClick
     if (confirm('¿Estás seguro de que deseas eliminar este periodo?')) {
       setPeriodos(periodos.filter(p => p.id !== periodoId))
     }
   }
 
-  // Formatear fecha
   const formatearFecha = (fecha) => {
     const date = new Date(fecha)
     const dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
@@ -84,13 +82,11 @@ const Periodos = () => {
     return `${diaSemana} ${dia} de ${mes} - ${hora}`
   }
 
-  // Filtrar periodos
   const periodosFiltrados = periodos.filter(periodo => {
     if (filterEstado === 'todos') return true
     return periodo.estado === filterEstado
   })
 
-  // Colores según estado
   const getEstadoColor = (estado) => {
     switch(estado) {
       case 'activo':

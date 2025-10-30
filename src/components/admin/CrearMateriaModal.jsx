@@ -40,7 +40,6 @@ const CrearMateriaModal = ({ isOpen, onClose, onCrear }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    // Validaciones
     const newErrors = {}
     
     if (!formData.codigo.trim()) {
@@ -68,7 +67,6 @@ const CrearMateriaModal = ({ isOpen, onClose, onCrear }) => {
 
     onCrear(formData)
     
-    // Reset form
     setFormData({
       codigo: '',
       nombre: '',
@@ -89,7 +87,6 @@ const CrearMateriaModal = ({ isOpen, onClose, onCrear }) => {
   }
 
   const handleCodigoChange = (value) => {
-    // Solo permitir letras y convertir a mayúsculas
     const codigo = value.toUpperCase().replace(/[^A-Z]/g, '').substring(0, 4)
     handleChange('codigo', codigo)
   }

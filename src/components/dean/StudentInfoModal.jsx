@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const StudentInfoModal = ({ isOpen, onClose, solicitud, onAprobar, onRechazar, onSolicitarInfo }) => {
-  const [accion, setAccion] = useState(null) // 'aprobar', 'rechazar', o 'solicitar-info'
+  const [accion, setAccion] = useState(null)
   const [motivo, setMotivo] = useState('')
   const [error, setError] = useState('')
   const [mostrarHorario, setMostrarHorario] = useState(false)
@@ -48,7 +48,6 @@ const StudentInfoModal = ({ isOpen, onClose, solicitud, onAprobar, onRechazar, o
   }
 
   const handleConfirmar = () => {
-    // Validar según la acción
     if (accion === 'rechazar' && (!motivo || motivo.trim().length < 10)) {
       setError('Debes escribir un motivo de al menos 10 caracteres')
       return
@@ -59,7 +58,6 @@ const StudentInfoModal = ({ isOpen, onClose, solicitud, onAprobar, onRechazar, o
       return
     }
 
-    // Ejecutar acción
     if (accion === 'aprobar') {
       onAprobar(solicitud.id, motivo || 'Solicitud aprobada')
     } else if (accion === 'rechazar') {
@@ -70,7 +68,6 @@ const StudentInfoModal = ({ isOpen, onClose, solicitud, onAprobar, onRechazar, o
       }
     }
 
-    // Limpiar y cerrar
     setAccion(null)
     setMotivo('')
     setError('')
@@ -99,7 +96,7 @@ const StudentInfoModal = ({ isOpen, onClose, solicitud, onAprobar, onRechazar, o
       {/* Overlay */}
       <div 
         className="fixed inset-0 bg-black bg-opacity-50 z-40"
-        onClick={accion ? undefined : onClose} // No cerrar si está en modo acción
+        onClick={accion ? undefined : onClose}
       />
 
       {/* Modal */}

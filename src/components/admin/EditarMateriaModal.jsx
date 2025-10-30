@@ -13,7 +13,6 @@ const EditarMateriaModal = ({ isOpen, onClose, materia, onEditar }) => {
 
   const [errors, setErrors] = useState({})
 
-  // Cargar datos de la materia cuando el modal se abre
   useEffect(() => {
     if (materia && isOpen) {
       setFormData({
@@ -56,7 +55,6 @@ const EditarMateriaModal = ({ isOpen, onClose, materia, onEditar }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    // Validaciones
     const newErrors = {}
     
     if (!formData.nombre.trim()) {
@@ -104,7 +102,7 @@ const EditarMateriaModal = ({ isOpen, onClose, materia, onEditar }) => {
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6">
           <div className="space-y-4">
-            {/* Código (solo lectura) */}
+            {/* Código */}
             <div>
               <label className="block text-sm font-semibold mb-2">
                 Código de la Materia:

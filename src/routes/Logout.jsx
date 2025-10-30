@@ -5,10 +5,8 @@ const Logout = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Limpiar localStorage
     localStorage.removeItem('user')
     
-    // Redirigir al login
     navigate('/login', { replace: true })
   }, [navigate])
 

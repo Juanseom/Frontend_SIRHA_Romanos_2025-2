@@ -94,15 +94,12 @@ const MisGrupos = () => {
     }
   ])
 
-  // Obtener lista única de materias para el filtro
   const materiasUnicas = ['todas', ...new Set(grupos.map(g => g.materia.split(' - ')[0]))]
 
-  // Filtrar grupos según la materia seleccionada
   const gruposFiltrados = filterMateria === 'todas' 
     ? grupos 
     : grupos.filter(g => g.materia.startsWith(filterMateria))
 
-  // Calcular estadísticas
   const totalGrupos = grupos.length
   const totalEstudiantes = grupos.reduce((sum, g) => sum + g.cuposOcupados, 0)
   const promedioOcupacion = Math.round(grupos.reduce((sum, g) => sum + g.porcentaje, 0) / grupos.length)

@@ -23,7 +23,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
 
   if (!isOpen) return null
 
-  // Configuración de horarios
   const diasSemana = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO']
   
   const horariosDisponibles = [
@@ -31,7 +30,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
     '13:00', '14:30', '16:00', '17:30'
   ]
 
-  // Generar automáticamente código de 4 dígitos
   const generarCodigoGrupo = () => {
     const codigo = Math.floor(1000 + Math.random() * 9000).toString()
     handleChange('codigoGrupo', codigo)
@@ -40,7 +38,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    // Validaciones
     const newErrors = {}
     
     if (!formData.materiaId) {
@@ -70,7 +67,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
       return
     }
 
-    // Encontrar la materia seleccionada
     const materiaSeleccionada = materias.find(m => m.id === parseInt(formData.materiaId))
     
     const grupoCompleto = {
@@ -83,7 +79,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
     
     onCrear(grupoCompleto)
     
-    // Reset form
     setFormData({
       materiaId: '',
       seccion: '1',
@@ -105,23 +100,20 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
   }
 
   const handleAgregarHorario = () => {
-    // Validar horario
     if (!nuevoHorario.salon.trim()) {
       alert('❌ Debe especificar un salón')
       return
     }
 
-    // Validar duración (debe ser 1h 30min)
     const inicio = new Date(`2000-01-01T${nuevoHorario.horaInicio}`)
     const fin = new Date(`2000-01-01T${nuevoHorario.horaFin}`)
-    const duracion = (fin - inicio) / (1000 * 60) // minutos
+    const duracion = (fin - inicio) / (1000 * 60)
     
     if (duracion !== 90) {
       alert('❌ Las clases deben durar exactamente 1 hora y 30 minutos')
       return
     }
 
-    // Verificar que no haya solapamiento en el mismo día
     const hayConflicto = horarios.some(h =>
       h.dia === nuevoHorario.dia &&
       !(nuevoHorario.horaFin <= h.horaInicio || nuevoHorario.horaInicio >= h.horaFin)
@@ -134,7 +126,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
 
     setHorarios([...horarios, { ...nuevoHorario }])
     
-    // Reset nuevo horario
     setNuevoHorario({
       dia: 'LUNES',
       horaInicio: '07:00',
@@ -142,7 +133,6 @@ const CrearGrupoModalAvanzado = ({ isOpen, onClose, onCrear, materias }) => {
       salon: ''
     })
     
-    // Limpiar error de horarios si existía
     if (errors.horarios) {
       setErrors({ ...errors, horarios: null })
     }

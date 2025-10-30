@@ -25,9 +25,9 @@ const SemaforoAcademico = () => {
           codigo: 'MABA',
           nombre: 'Matemáticas Básicas',
           creditos: 0,
-          tipo: 'H', // H = Homologable, N = No homologable
-          estado: 'aprobada', // aprobada, perdida, cursando, pendiente
-          nota: 4.2, // Solo para materias aprobadas
+          tipo: 'H', 
+          estado: 'aprobada', 
+          nota: 4.2, 
           prerequisitos: []
         },
         {
@@ -221,12 +221,10 @@ const SemaforoAcademico = () => {
     setIsModalOpen(true)
   }
 
-  // Calcular créditos totales
   const creditosTotales = semestres.reduce((total, semestre) => {
     return total + semestre.materias.reduce((sum, materia) => sum + materia.creditos, 0)
   }, 0)
 
-  // Calcular créditos según estado
   const creditosAprobados = semestres.reduce((total, semestre) => {
     return total + semestre.materias
       .filter(m => m.estado === 'aprobada')

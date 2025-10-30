@@ -4,10 +4,8 @@ import Layout from '../../components/common/Layout'
 const MisHorarios = () => {
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('2025-2')
 
-  // Lista de semestres cursados
   const semestres = ['2025-2', '2025-1', '2024-2', '2024-1', '2023-2']
 
-  // Bloques horarios de 1.5 horas (7am - 7pm)
   const bloquesHorarios = [
     { inicio: '07:00', fin: '08:30', label: '7:00am - 8:30am' },
     { inicio: '08:30', fin: '10:00', label: '8:30am - 10:00am' },
@@ -161,7 +159,6 @@ const MisHorarios = () => {
   const horario = horarioData[semestreSeleccionado] || []
   const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
 
-  // Función para verificar si hay una clase en ese bloque
   const getClaseEnBloque = (dia, bloqueHora) => {
     for (const clase of horario) {
       for (const bloque of clase.bloques) {
@@ -173,7 +170,6 @@ const MisHorarios = () => {
     return null
   }
 
-  // Calcular estadísticas del semestre
   const totalMaterias = horario.length
   const totalCreditos = horario.reduce((sum, materia) => sum + materia.creditos, 0)
   const horasSemanales = horario.reduce((sum, materia) => sum + materia.bloques.length * 1.5, 0)
@@ -279,7 +275,7 @@ const MisHorarios = () => {
           </div>
         </div>
 
-        {/* Leyenda de materias mejorada */}
+        {/* Leyenda de materias */}
         <div className="mt-8 max-w-[1400px]">
           <h3 className="font-semibold mb-3 text-lg">Materias del Semestre:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

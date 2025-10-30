@@ -4,10 +4,8 @@ import Layout from '../../components/common/Layout'
 const Horario = () => {
   const [semestreSeleccionado, setSemestreSeleccionado] = useState('2025-2')
 
-  // Lista de semestres
   const semestres = ['2025-2', '2025-1', '2024-2', '2024-1']
 
-  // Bloques horarios de 1.5 horas (7am - 7pm)
   const bloquesHorarios = [
     { inicio: '07:00', fin: '08:30', label: '7:00am - 8:30am' },
     { inicio: '08:30', fin: '10:00', label: '8:30am - 10:00am' },
@@ -136,7 +134,6 @@ const Horario = () => {
   const horario = horarioData[semestreSeleccionado] || []
   const dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
 
-  // Función para verificar si hay una clase en ese bloque
   const getClaseEnBloque = (dia, bloqueHora) => {
     for (const clase of horario) {
       for (const bloque of clase.bloques) {
@@ -148,7 +145,6 @@ const Horario = () => {
     return null
   }
 
-  // Calcular estadísticas del semestre
   const totalGrupos = horario.length
   const totalEstudiantes = horario.reduce((sum, grupo) => sum + grupo.estudiantes, 0)
   const horasSemanales = horario.reduce((sum, grupo) => sum + grupo.bloques.length * 1.5, 0)

@@ -1,6 +1,5 @@
 const SemaforizacionGlobal = () => {
   // Datos de ejemplo - vendrán del backend
-  // Aquí mostraríamos estadísticas agregadas de todos los estudiantes
   const estadisticasGlobales = {
     totalEstudiantes: 1250,
     creditosTotalesPlan: 165,

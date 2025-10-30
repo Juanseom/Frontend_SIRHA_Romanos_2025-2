@@ -10,17 +10,13 @@ const ProfileDropdown = () => {
   const user = userStr ? JSON.parse(userStr) : null
 
   const handleLogout = () => {
-    // Mostrar confirmación
     const confirmar = window.confirm('¿Estás seguro de que deseas cerrar sesión?')
     
     if (confirmar) {
-      // Limpiar localStorage
       localStorage.removeItem('user')
       
-      // Cerrar el dropdown
       setIsOpen(false)
       
-      // Redirigir al login
       navigate('/login')
     }
   }
@@ -66,7 +62,6 @@ const ProfileDropdown = () => {
             <button
               onClick={() => {
                 setIsOpen(false)
-                // Aquí puedes navegar a perfil si existe la página
                 alert('Funcionalidad de Mi Perfil - Por implementar')
               }}
               className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-3 text-gray-700 transition-colors"
@@ -80,7 +75,6 @@ const ProfileDropdown = () => {
             <button
               onClick={() => {
                 setIsOpen(false)
-                // Aquí puedes navegar a configuración si existe la página
                 alert('Funcionalidad de Configuración - Por implementar')
               }}
               className="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center gap-3 text-gray-700 transition-colors"

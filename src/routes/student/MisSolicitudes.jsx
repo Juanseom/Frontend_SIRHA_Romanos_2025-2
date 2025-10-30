@@ -104,7 +104,6 @@ const MisSolicitudes = () => {
       descripcion: 'No se qué escribir, pero aquí irá la excusa de por qué la quiere cambiar o eso.',
       respuesta: ''
     },
-    // Solicitudes de periodos anteriores para probar el filtro
     {
       id: 6,
       tipo: 'Inscribir Asignatura',
@@ -144,12 +143,9 @@ const MisSolicitudes = () => {
     }
   ])
 
-  // Filtrar según la pestaña activa Y el periodo seleccionado
   const solicitudesFiltradas = solicitudes.filter(sol => {
-    // Filtro por periodo
     if (sol.periodo !== periodoSeleccionado) return false
     
-    // Filtro por estado
     if (activeTab === 'todas') return true
     if (activeTab === 'aprobadas') return sol.estado === 'aprobada'
     if (activeTab === 'rechazadas') return sol.estado === 'rechazada'
@@ -168,7 +164,6 @@ const MisSolicitudes = () => {
   }
 
   const handleCrearSolicitud = (nuevaSolicitud) => {
-    // Agregar periodo actual y generar ID
     const solicitudConPeriodo = {
       ...nuevaSolicitud,
       id: solicitudes.length + 1,
@@ -189,12 +184,10 @@ const MisSolicitudes = () => {
     alert('Solicitud creada exitosamente')
   }
 
-  // Función para cancelar solicitud
   const handleCancelarSolicitud = (solicitudId) => {
     const confirmar = window.confirm('¿Estás seguro de que deseas cancelar esta solicitud?')
     
     if (confirmar) {
-      // En producción, aquí harías una llamada al backend
       setSolicitudes(solicitudes.filter(sol => sol.id !== solicitudId))
       setIsModalOpen(false)
       alert('Solicitud cancelada exitosamente')

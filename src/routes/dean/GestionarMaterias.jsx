@@ -75,7 +75,6 @@ const GestionarMaterias = () => {
     }
   ])
 
-  // Filtrar materias por búsqueda
   const materiasFiltradas = materias.filter(materia =>
     materia.codigo.toLowerCase().includes(busqueda.toLowerCase()) ||
     materia.nombre.toLowerCase().includes(busqueda.toLowerCase()) ||
@@ -124,7 +123,6 @@ const GestionarMaterias = () => {
   }
 
   const handleVerGrupos = (materia) => {
-    // Navegar a la gestión de grupos filtrando por esta materia
     navigate(`/dean/grupos-materias?materia=${materia.codigo}`)
   }
 
