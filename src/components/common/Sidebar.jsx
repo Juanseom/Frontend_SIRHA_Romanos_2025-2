@@ -7,6 +7,8 @@ const Sidebar = ({ isOpen, onClose, role }) => {
   const menuOptions = {
     dean: [
       { label: 'Gestionar Solicitudes', path: '/dean/gestionar-solicitudes' },
+      { label: 'Gestionar Grupos', path: '/dean/grupos-materias' },
+      { label: 'Gestionar Materias', path: '/dean/gestionar-materias' },
       { label: 'Periodos', path: '/dean/periodos' },
       { label: 'Monitorear Grupos', path: '/dean/monitorear-grupos' }
     ],

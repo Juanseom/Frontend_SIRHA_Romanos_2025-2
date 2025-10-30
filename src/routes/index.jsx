@@ -8,6 +8,8 @@ import DeanHome from './dean/DeanHome'
 import GestionarSolicitudes from './dean/GestionarSolicitudes'
 import Periodos from './dean/Periodos'
 import MonitorearGrupos from './dean/MonitorearGrupos'
+import GestionarGruposDean from './dean/GruposYMaterias'
+import GestionarMateriasDean from './dean/GestionarMaterias'
 
 // Student routes
 import StudentHome from './student/StudentHome'
@@ -105,6 +107,22 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute allowedRoles={['dean']}>
         <MonitorearGrupos />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/dean/grupos-materias',
+    element: (
+      <ProtectedRoute allowedRoles={['dean']}>
+        <GestionarGruposDean />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/dean/gestionar-materias',
+    element: (
+      <ProtectedRoute allowedRoles={['dean']}>
+        <GestionarMateriasDean />
       </ProtectedRoute>
     ),
   },
