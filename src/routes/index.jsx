@@ -22,6 +22,7 @@ import PeriodosAdmin from './admin/Periodos'
 import MonitorearGruposAdmin from './admin/MonitorearGrupos'
 import Estadisticas from './admin/Estadisticas'
 import GruposYMaterias from './admin/GruposYMaterias'
+import GestionarMaterias from './admin/GestionarMaterias'
 
 export const router = createBrowserRouter([
   // Public routes (Login/Logout)
@@ -157,4 +158,12 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+  path: '/admin/gestionar-materias',
+  element: (
+    <ProtectedRoute allowedRoles={['admin']}>
+      <GestionarMaterias />
+    </ProtectedRoute>
+  ),
+}
 ])

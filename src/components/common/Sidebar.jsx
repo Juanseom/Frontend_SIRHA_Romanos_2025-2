@@ -17,9 +17,10 @@ const Sidebar = ({ isOpen, onClose, role }) => {
     ],
     admin: [
       { label: 'Gestionar Solicitudes', path: '/admin/gestionar-solicitudes' },
+      { label: 'Gestionar Grupos', path: '/admin/grupos-materias' },
+      { label: 'Gestionar Materias', path: '/admin/gestionar-materias' },
       { label: 'Periodos', path: '/admin/periodos' },
       { label: 'Monitorear Grupos', path: '/admin/monitorear-grupos' },
-      { label: 'Grupos y Materias', path: '/admin/grupos-materias' },
       { label: 'Estadísticas', path: '/admin/estadisticas' }
     ]
   }
