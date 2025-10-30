@@ -14,14 +14,14 @@ const GruposYMaterias = () => {
   const [isAsignarProfesorModalOpen, setIsAsignarProfesorModalOpen] = useState(false)
   const [grupoSeleccionado, setGrupoSeleccionado] = useState(null)
 
-  // Datos de ejemplo - vendrían del backend
-  const [todosLosGrupos] = useState([
+  // ⚠️ CAMBIO IMPORTANTE: Ahora usa useState para que se puedan reflejar los cambios
+  const [todosLosGrupos, setTodosLosGrupos] = useState([
     // 2025-2
     {
       id: 1,
       clase: '1624',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE-VIER',
+      diasHoras: 'LUN-MIE-VIER 14:00-16:00',
       aula: 'D-309',
       instructor: 'ANDRÉS MARTÍN QUINTERO',
       color: 'verde',
@@ -34,7 +34,7 @@ const GruposYMaterias = () => {
       id: 2,
       clase: '1624',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE-VIER',
+      diasHoras: 'MAR-JUE-VIER 08:00-10:00',
       aula: 'B-104',
       instructor: 'ANDRÉS MARTÍN QUINTERO',
       color: 'azul',
@@ -47,7 +47,7 @@ const GruposYMaterias = () => {
       id: 3,
       clase: '1625',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE',
+      diasHoras: 'LUN-MIE 10:00-12:00',
       aula: 'A-205',
       instructor: 'MARÍA LÓPEZ GARCÍA',
       color: 'verde',
@@ -60,7 +60,7 @@ const GruposYMaterias = () => {
       id: 4,
       clase: 'PSOC',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE',
+      diasHoras: 'MAR-JUE 14:00-16:00',
       aula: 'C-302',
       instructor: 'CARLOS PÉREZ RODRÍGUEZ',
       color: 'azul',
@@ -73,7 +73,7 @@ const GruposYMaterias = () => {
       id: 5,
       clase: 'DOSW',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE-VIER',
+      diasHoras: 'LUN-MIE-VIER 16:00-18:00',
       aula: 'B-204',
       instructor: 'ANA TORRES GONZÁLEZ',
       color: 'verde',
@@ -86,7 +86,7 @@ const GruposYMaterias = () => {
       id: 6,
       clase: 'PRYE',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'VIER',
+      diasHoras: 'VIER 14:00-18:00',
       aula: 'A-401',
       instructor: 'ROBERTO SÁNCHEZ VARGAS',
       color: 'azul',
@@ -99,7 +99,7 @@ const GruposYMaterias = () => {
       id: 7,
       clase: 'AYSR',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE',
+      diasHoras: 'LUN-MIE 08:00-10:00',
       aula: 'C-201',
       instructor: 'LAURA GÓMEZ MARTÍNEZ',
       color: 'verde',
@@ -112,7 +112,7 @@ const GruposYMaterias = () => {
       id: 8,
       clase: 'ODSC',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE',
+      diasHoras: 'MAR-JUE 10:00-12:00',
       aula: 'D-105',
       instructor: 'DIEGO MORALES CASTRO',
       color: 'azul',
@@ -125,7 +125,7 @@ const GruposYMaterias = () => {
       id: 9,
       clase: 'DOSW',
       seccion: '3-LEC ORDINARIA',
-      diasHoras: 'LUN-VIER',
+      diasHoras: 'LUN-VIER 10:00-12:00',
       aula: 'B-302',
       instructor: 'PATRICIA GUTIÉRREZ DÍAZ',
       color: 'verde',
@@ -138,7 +138,7 @@ const GruposYMaterias = () => {
       id: 10,
       clase: 'PSOC',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MIE',
+      diasHoras: 'MIE 14:00-18:00',
       aula: 'A-108',
       instructor: 'FERNANDO ACOSTA RUIZ',
       color: 'azul',
@@ -152,7 +152,7 @@ const GruposYMaterias = () => {
       id: 11,
       clase: '1624',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE',
+      diasHoras: 'LUN-MIE 14:00-16:00',
       aula: 'D-201',
       instructor: 'SOFÍA RAMÍREZ LÓPEZ',
       color: 'verde',
@@ -165,7 +165,7 @@ const GruposYMaterias = () => {
       id: 12,
       clase: 'PRYE',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE',
+      diasHoras: 'MAR-JUE 08:00-10:00',
       aula: 'A-105',
       instructor: 'JUAN PABLO CONTRERAS',
       color: 'azul',
@@ -178,7 +178,7 @@ const GruposYMaterias = () => {
       id: 13,
       clase: 'AYSR',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'VIER',
+      diasHoras: 'VIER 14:00-18:00',
       aula: 'C-401',
       instructor: 'ELIZABETH CORREA SUÁREZ',
       color: 'verde',
@@ -191,7 +191,7 @@ const GruposYMaterias = () => {
       id: 14,
       clase: 'DOSW',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE-VIER',
+      diasHoras: 'LUN-MIE-VIER 10:00-12:00',
       aula: 'B-203',
       instructor: 'NIKOLAS MARTÍNEZ',
       color: 'azul',
@@ -204,7 +204,7 @@ const GruposYMaterias = () => {
       id: 15,
       clase: 'ODSC',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE',
+      diasHoras: 'MAR-JUE 14:00-16:00',
       aula: 'D-301',
       instructor: 'SANDRA CASALLAS AMAYA',
       color: 'verde',
@@ -217,7 +217,7 @@ const GruposYMaterias = () => {
       id: 16,
       clase: '1625',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-VIER',
+      diasHoras: 'LUN-VIER 08:00-10:00',
       aula: 'A-202',
       instructor: 'IGNACIO CASTILLO RENDÓN',
       color: 'azul',
@@ -231,7 +231,7 @@ const GruposYMaterias = () => {
       id: 17,
       clase: '1624',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-MIE',
+      diasHoras: 'LUN-MIE 14:00-16:00',
       aula: 'D-101',
       instructor: 'JUAN SEBASTIÁN ORTEGA',
       color: 'verde',
@@ -244,7 +244,7 @@ const GruposYMaterias = () => {
       id: 18,
       clase: 'DOSW',
       seccion: '2-LEC ORDINARIA',
-      diasHoras: 'MAR-JUE',
+      diasHoras: 'MAR-JUE 10:00-12:00',
       aula: 'B-302',
       instructor: 'MARÍA BELÉN QUINTERO',
       color: 'azul',
@@ -257,7 +257,7 @@ const GruposYMaterias = () => {
       id: 19,
       clase: 'PSOC',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'LUN-VIER',
+      diasHoras: 'LUN-VIER 08:00-10:00',
       aula: 'C-205',
       instructor: 'CARLOS EDUARDO DÍAZ',
       color: 'verde',
@@ -270,7 +270,7 @@ const GruposYMaterias = () => {
       id: 20,
       clase: 'PRYE',
       seccion: '1-LEC ORDINARIA',
-      diasHoras: 'MIE',
+      diasHoras: 'MIE 14:00-18:00',
       aula: 'A-401',
       instructor: 'ANDREA JIMÉNEZ RUIZ',
       color: 'azul',
@@ -298,12 +298,54 @@ const GruposYMaterias = () => {
     setIsAsignarProfesorModalOpen(true)
   }
 
+  // ✅ FUNCIÓN MEJORADA: Ahora actualiza el estado correctamente
+  const handleActualizarProfesor = (nuevoProfesor) => {
+    if (!grupoSeleccionado) return
+
+    setTodosLosGrupos(grupos =>
+      grupos.map(g =>
+        g.id === grupoSeleccionado.id
+          ? { ...g, instructor: nuevoProfesor }
+          : g
+      )
+    )
+    
+    setIsAsignarProfesorModalOpen(false)
+    setGrupoSeleccionado(null)
+    
+    // Feedback visual (opcional)
+    alert(`✅ Profesor asignado exitosamente a ${grupoSeleccionado.clase} - ${grupoSeleccionado.seccion}`)
+  }
+
+  // ✅ FUNCIÓN MEJORADA: Ahora elimina el grupo del estado
   const handleEliminarGrupo = (grupoId) => {
-    if (confirm('¿Está seguro de eliminar este grupo?')) {
-      // En producción, esto haría una llamada al backend
-      console.log('Eliminar grupo:', grupoId)
-      // todosLosGrupos sería actualizado desde el backend
+    const grupo = todosLosGrupos.find(g => g.id === grupoId)
+    
+    if (confirm(`¿Está seguro de eliminar el grupo ${grupo?.clase} - ${grupo?.seccion}?`)) {
+      setTodosLosGrupos(grupos => grupos.filter(g => g.id !== grupoId))
+      
+      // Feedback visual
+      alert('✅ Grupo eliminado exitosamente')
     }
+  }
+
+  // ✅ FUNCIÓN MEJORADA: Ahora agrega el nuevo grupo al estado
+  const handleCrearGrupo = (nuevoGrupo) => {
+    // Generar nuevo ID
+    const nuevoId = Math.max(...todosLosGrupos.map(g => g.id)) + 1
+    
+    const grupoCompleto = {
+      id: nuevoId,
+      ...nuevoGrupo,
+      cuposOcupados: 0, // Inicia sin estudiantes
+      color: nuevoId % 2 === 0 ? 'azul' : 'verde' // Alterna colores
+    }
+    
+    setTodosLosGrupos(grupos => [...grupos, grupoCompleto])
+    setIsCrearModalOpen(false)
+    
+    // Feedback visual
+    alert(`✅ Grupo ${grupoCompleto.clase} - ${grupoCompleto.seccion} creado exitosamente`)
   }
 
   return (
@@ -363,7 +405,7 @@ const GruposYMaterias = () => {
 
         {/* Lista de grupos */}
         <div className="space-y-3 max-w-[1200px]">
-          <div className="grid grid-cols-[100px_200px_150px_150px_250px_120px] gap-4 px-4 text-sm font-semibold text-gray-600 mb-2">
+          <div className="grid grid-cols-[100px_200px_180px_120px_250px_150px] gap-4 px-4 text-sm font-semibold text-gray-600 mb-2">
             <div>CLASE</div>
             <div>SECCIÓN</div>
             <div>DÍAS Y HORAS</div>
@@ -389,7 +431,7 @@ const GruposYMaterias = () => {
                   : 'bg-blue-100 border-blue-300'
               }`}
             >
-              <div className="grid grid-cols-[100px_200px_150px_150px_250px_120px] gap-4 items-center">
+              <div className="grid grid-cols-[100px_200px_180px_120px_250px_150px] gap-4 items-center">
                 <div className="font-bold">{grupo.clase}</div>
                 <div className="text-sm">
                   {grupo.seccion}
@@ -406,7 +448,7 @@ const GruposYMaterias = () => {
                 <div className="text-sm">{grupo.diasHoras}</div>
                 <div className="text-sm">
                   {grupo.aula}
-                  <span className="text-xs text-gray-500 ml-1">
+                  <span className="text-xs text-gray-500 ml-1 block">
                     ({grupo.cuposOcupados}/{grupo.cuposTotales})
                   </span>
                 </div>
@@ -456,22 +498,14 @@ const GruposYMaterias = () => {
       <CrearGrupoModal
         isOpen={isCrearModalOpen}
         onClose={() => setIsCrearModalOpen(false)}
-        onCrear={(nuevoGrupo) => {
-          // En producción, esto haría una llamada al backend
-          console.log('Crear grupo:', nuevoGrupo)
-          setIsCrearModalOpen(false)
-        }}
+        onCrear={handleCrearGrupo}
       />
 
       <AsignarProfesorModal
         isOpen={isAsignarProfesorModalOpen}
         onClose={() => setIsAsignarProfesorModalOpen(false)}
         grupo={grupoSeleccionado}
-        onAsignar={(profesor) => {
-          // En producción, esto haría una llamada al backend
-          console.log('Asignar profesor:', profesor, 'al grupo:', grupoSeleccionado?.id)
-          setIsAsignarProfesorModalOpen(false)
-        }}
+        onAsignar={handleActualizarProfesor}
       />
     </Layout>
   )
