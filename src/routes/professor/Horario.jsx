@@ -48,9 +48,9 @@ const Horario = () => {
       },
       {
         id: 3,
-        materia: 'BADA',
+        materia: 'MBDA',
         grupo: '3',
-        nombreCompleto: 'Bases de Datos - Grupo 3',
+        nombreCompleto: 'Modelos de Bases de Datos - Grupo 3',
         salon: 'C-301',
         estudiantes: 30,
         color: '#A8DADC',
@@ -62,9 +62,9 @@ const Horario = () => {
       },
       {
         id: 4,
-        materia: 'BADA',
+        materia: 'MBDA',
         grupo: '5',
-        nombreCompleto: 'Bases de Datos - Grupo 5',
+        nombreCompleto: 'Modelos de Bases de Datos - Grupo 5',
         salon: 'C-302',
         estudiantes: 28,
         color: '#89CFF0',

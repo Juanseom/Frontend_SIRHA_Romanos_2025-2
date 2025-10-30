@@ -10,14 +10,13 @@ const NotificationsDropdown = () => {
   const user = userStr ? JSON.parse(userStr) : null
   const userRole = user?.role || 'student'
 
-  // Notificaciones según el rol
   const notificacionesPorRol = {
     student: [
       {
         id: 1,
         tipo: 'solicitud',
         titulo: 'Solicitud Aprobada',
-        mensaje: 'Tu solicitud de cambio de grupo para Cálculo II ha sido aprobada.',
+        mensaje: 'Tu solicitud de cambio de grupo para CALD ha sido aprobada.',
         fecha: '2025-01-28 10:30 AM',
         leida: false,
         icono: '✅',
@@ -37,7 +36,7 @@ const NotificationsDropdown = () => {
         id: 3,
         tipo: 'solicitud',
         titulo: 'Solicitud Rechazada',
-        mensaje: 'Tu solicitud de inscripción para Física III fue rechazada. Motivo: Grupo lleno.',
+        mensaje: 'Tu solicitud de inscripción para FIEM fue rechazada. Motivo: Grupo lleno.',
         fecha: '2025-01-27 04:20 PM',
         leida: true,
         icono: '❌',
@@ -69,7 +68,7 @@ const NotificationsDropdown = () => {
         id: 1,
         tipo: 'solicitud',
         titulo: 'Nueva Solicitud Pendiente',
-        mensaje: 'El estudiante Juan Ortega ha solicitado bajar la asignatura de Física III.',
+        mensaje: 'El estudiante Juan Ortega ha solicitado bajar la asignatura de FIEM.',
         fecha: '2025-01-28 11:45 AM',
         leida: false,
         icono: '📝',
@@ -182,19 +181,15 @@ const NotificationsDropdown = () => {
     ]
   }
 
-  // Obtener notificaciones según el rol
   const notificaciones = notificacionesPorRol[userRole] || []
 
-  // Contar notificaciones no leídas
   const notificacionesNoLeidas = notificaciones.filter(n => !n.leida).length
 
   const marcarComoLeida = (id) => {
-    // llamada al backend
     console.log('Marcar notificación como leída:', id)
   }
 
   const marcarTodasComoLeidas = () => {
-    // llamada al backend
     console.log('Marcar todas como leídas')
     setIsOpen(false)
   }

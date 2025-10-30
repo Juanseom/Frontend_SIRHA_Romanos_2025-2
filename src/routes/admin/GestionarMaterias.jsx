@@ -46,7 +46,7 @@ const GestionarMaterias = () => {
     {
       id: 4,
       codigo: "PRYE",
-      nombre: "Proyectos de Ingeniería",
+      nombre: "Probabilidad y Estadística",
       creditos: 3,
       programa: "Todas las ingenierías",
       departamento: "Proyectos",
@@ -65,8 +65,8 @@ const GestionarMaterias = () => {
     },
     {
       id: 6,
-      codigo: "BDAV",
-      nombre: "Bases de Datos Avanzadas",
+      codigo: "MBDA",
+      nombre: "Modelos de Bases de Datos",
       creditos: 3,
       programa: "Ingeniería de Sistemas",
       departamento: "Sistemas",

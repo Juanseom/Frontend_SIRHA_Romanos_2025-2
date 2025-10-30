@@ -15,7 +15,7 @@ const Login = () => {
   // Usuarios de ejemplo (en producción vendrían del backend)
   const usuarios = {
     // Estudiante
-    'estudiante@escuelaing.edu.co': {
+    'estudiante@mail.escuelaing.edu.co': {
       password: 'estudiante123',
       role: 'student',
       nombre: 'Juan Sebastián Ortega'
@@ -89,7 +89,6 @@ const Login = () => {
       return
     }
 
-    // Login exitoso - guardar en localStorage
     localStorage.setItem('user', JSON.stringify({
       email: formData.email,
       role: usuario.role,

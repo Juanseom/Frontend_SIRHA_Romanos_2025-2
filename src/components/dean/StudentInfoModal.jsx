@@ -13,17 +13,17 @@ const StudentInfoModal = ({ isOpen, onClose, solicitud, onAprobar, onRechazar, o
       { hora: '2:00-4:00 PM', materia: 'DOSW - Diseño OO', salon: 'ED-205', profesor: 'Ing. Carlos Martínez' }
     ]},
     { dia: 'Martes', bloques: [
-      { hora: '10:00-12:00 PM', materia: 'FUPB - Fund. Programación', salon: 'ED-104', profesor: 'Dra. Ana García' }
+      { hora: '10:00-12:00 PM', materia: 'IPRO - Intro. Programación', salon: 'ED-104', profesor: 'Dra. Ana García' }
     ]},
     { dia: 'Miércoles', bloques: [
       { hora: '7:00-9:00 AM', materia: 'CALV - Cálculo Vectorial', salon: 'ED-301', profesor: 'Dr. Juan Pérez' },
-      { hora: '2:00-4:00 PM', materia: 'DOSW - Diseño OO', salon: 'ED-205', profesor: 'Ing. Carlos Martínez' }
+      { hora: '2:00-4:00 PM', materia: 'FIEM - Física de Electromagnetismo', salon: 'ED-205', profesor: 'Ing. Carlos Martínez' }
     ]},
     { dia: 'Jueves', bloques: [
-      { hora: '10:00-12:00 PM', materia: 'FUPB - Fund. Programación', salon: 'ED-104', profesor: 'Dra. Ana García' }
+      { hora: '10:00-12:00 PM', materia: 'IPRO - Intro. Programación', salon: 'ED-104', profesor: 'Dra. Ana García' }
     ]},
     { dia: 'Viernes', bloques: [
-      { hora: '8:00-10:00 AM', materia: 'ALGO - Algoritmos', salon: 'ED-402', profesor: 'Dr. Roberto Silva' }
+      { hora: '8:00-10:00 AM', materia: 'MABA - Matemática Básica', salon: 'ED-402', profesor: 'Dr. Roberto Silva' }
     ]}
   ]
 

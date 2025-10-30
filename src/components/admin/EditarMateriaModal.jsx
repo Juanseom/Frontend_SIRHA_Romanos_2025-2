@@ -49,7 +49,7 @@ const EditarMateriaModal = ({ isOpen, onClose, materia, onEditar }) => {
     'Industrial',
     'Electrónica',
     'Mecánica',
-    'Proyectos'
+    'Idiomas'
   ]
 
   const handleSubmit = (e) => {

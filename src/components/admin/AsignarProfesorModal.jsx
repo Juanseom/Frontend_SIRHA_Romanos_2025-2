@@ -5,7 +5,7 @@ const AsignarProfesorModal = ({ isOpen, onClose, grupo, onAsignar }) => {
 
   // Lista de profesores disponibles (vendría del backend)
   const profesores = [
-    'ANDRÉS MARTÍN QUINTERO',
+    'ANDRÉS MARTÍN CANTOR',
     'MARÍA LÓPEZ GARCÍA',
     'CARLOS PÉREZ RODRÍGUEZ',
     'ANA TORRES GONZÁLEZ',
@@ -15,13 +15,8 @@ const AsignarProfesorModal = ({ isOpen, onClose, grupo, onAsignar }) => {
     'PATRICIA GUTIÉRREZ DÍAZ',
     'FERNANDO ACOSTA RUIZ',
     'SOFÍA RAMÍREZ LÓPEZ',
-    'JUAN PABLO CONTRERAS',
-    'ELIZABETH CORREA SUÁREZ',
-    'NIKOLAS MARTÍNEZ',
     'SANDRA CASALLAS AMAYA',
     'IGNACIO CASTILLO RENDÓN',
-    'JUAN SEBASTIÁN ORTEGA',
-    'MARÍA BELÉN QUINTERO',
     'CARLOS EDUARDO DÍAZ',
     'ANDREA JIMÉNEZ RUIZ'
   ]

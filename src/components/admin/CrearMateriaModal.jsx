@@ -34,7 +34,7 @@ const CrearMateriaModal = ({ isOpen, onClose, onCrear }) => {
     'Industrial',
     'Electrónica',
     'Mecánica',
-    'Proyectos'
+    'Idiomas'
   ]
 
   const handleSubmit = (e) => {

@@ -1,6 +1,5 @@
 // mockData.js - Datos de ejemplo para simulación sin backend
 
-// Materias que el estudiante tiene inscritas actualmente
 export const materiasInscritas = [
   {
     codigo: 'CALV',
@@ -11,24 +10,24 @@ export const materiasInscritas = [
     horario: 'Lunes 7-9am, Miércoles 7-9am'
   },
   {
-    codigo: 'FUPB',
-    nombre: 'Fundamentos de Programación B',
+    codigo: 'FUPR',
+    nombre: 'Fundamentos de Proyectos',
     grupoActual: '8808',
     creditos: 3,
     profesor: 'Dra. Ana García',
     horario: 'Martes 10-12pm, Jueves 10-12pm'
   },
   {
-    codigo: 'DOSW',
-    nombre: 'Diseño Orientado a Objetos',
+    codigo: 'POOB',
+    nombre: 'Programación Orientada a Objetos',
     grupoActual: '1964',
     creditos: 3,
     profesor: 'Ing. Carlos Martínez',
     horario: 'Lunes 2-4pm, Miércoles 2-4pm'
   },
   {
-    codigo: 'ALGO',
-    nombre: 'Algoritmos',
+    codigo: 'IPRO',
+    nombre: 'Introducción a la Programación',
     grupoActual: '2345',
     creditos: 4,
     profesor: 'Dr. Roberto Silva',
@@ -36,7 +35,6 @@ export const materiasInscritas = [
   }
 ]
 
-// Todos los grupos disponibles para cambio de grupo
 export const gruposDisponibles = {
   'CALV': [
     {
@@ -61,7 +59,7 @@ export const gruposDisponibles = {
       cuposTotal: 25
     }
   ],
-  'FUPB': [
+  'FUPR': [
     {
       codigo: '8808',
       profesor: 'Dra. Ana García',
@@ -77,7 +75,7 @@ export const gruposDisponibles = {
       cuposTotal: 30
     }
   ],
-  'DOSW': [
+  'POOB': [
     {
       codigo: '1964',
       profesor: 'Ing. Carlos Martínez',
@@ -93,7 +91,7 @@ export const gruposDisponibles = {
       cuposTotal: 30
     }
   ],
-  'ALGO': [
+  'IPRO': [
     {
       codigo: '2345',
       profesor: 'Dr. Roberto Silva',
@@ -111,13 +109,12 @@ export const gruposDisponibles = {
   ]
 }
 
-// Catálogo de materias disponibles para inscribir (que el estudiante NO tiene)
 export const materiasParaInscribir = [
   {
     codigo: 'PRYE',
     nombre: 'Proyectos de Ingeniería',
     creditos: 3,
-    prerequisitos: ['ALGO', 'DOSW'],
+    prerequisitos: ['CALV', 'IPRO'],
     grupos: [
       {
         codigo: '4567',
@@ -139,7 +136,7 @@ export const materiasParaInscribir = [
     codigo: 'BADA',
     nombre: 'Bases de Datos',
     creditos: 4,
-    prerequisitos: ['FUPB'],
+    prerequisitos: ['FUPR'],
     grupos: [
       {
         codigo: '3456',
@@ -161,7 +158,7 @@ export const materiasParaInscribir = [
     codigo: 'RECO',
     nombre: 'Redes de Computadores',
     creditos: 3,
-    prerequisitos: ['DOSW'],
+    prerequisitos: ['POOB'],
     grupos: [
       {
         codigo: '5678',
@@ -196,25 +193,20 @@ export const materiasParaInscribir = [
   }
 ]
 
-// Validaciones para crear solicitudes
 export const validaciones = {
-  // Verificar si el estudiante tiene la materia inscrita
   tieneMateria: (codigoMateria) => {
     return materiasInscritas.some(m => m.codigo === codigoMateria)
   },
 
-  // Verificar si la materia NO está inscrita (para inscribirla)
   noTieneMateria: (codigoMateria) => {
     return !materiasInscritas.some(m => m.codigo === codigoMateria)
   },
 
-  // Obtener grupo actual del estudiante para una materia
   getGrupoActual: (codigoMateria) => {
     const materia = materiasInscritas.find(m => m.codigo === codigoMateria)
     return materia?.grupoActual || null
   },
 
-  // Verificar si un grupo tiene cupos disponibles
   tieneCupos: (codigoMateria, codigoGrupo) => {
     const grupos = gruposDisponibles[codigoMateria]
     if (!grupos) return false
@@ -223,48 +215,37 @@ export const validaciones = {
     return grupo && grupo.cuposDisponibles > 0
   },
 
-  // Verificar si el estudiante cumple prerequisitos para una materia
   cumplePrerequisitos: (codigoMateria) => {
     const materia = materiasParaInscribir.find(m => m.codigo === codigoMateria)
     if (!materia || !materia.prerequisitos) return true
     
-    // Verificar que tenga todos los prerequisitos inscritos o aprobados
     return materia.prerequisitos.every(prereq => 
       materiasInscritas.some(mi => mi.codigo === prereq)
     )
   },
-
-  // Verificar conflicto de horarios
   tieneConflictoHorario: (nuevoHorario) => {
-    // Lógica simplificada - en producción sería más compleja
-    // Por ahora retorna false (sin conflictos)
     return false
   }
 }
 
-// Función helper para obtener información completa de una materia
 export const getMateriaInfo = (codigoMateria) => {
-  // Buscar en materias inscritas
   let materia = materiasInscritas.find(m => m.codigo === codigoMateria)
   if (materia) return { ...materia, inscrita: true }
   
-  // Buscar en materias para inscribir
   materia = materiasParaInscribir.find(m => m.codigo === codigoMateria)
   if (materia) return { ...materia, inscrita: false }
   
   return null
 }
 
-// Función helper para obtener información de un grupo
 export const getGrupoInfo = (codigoMateria, codigoGrupo) => {
-  // Buscar en grupos disponibles
+
   const grupos = gruposDisponibles[codigoMateria]
   if (grupos) {
     const grupo = grupos.find(g => g.codigo === codigoGrupo)
     if (grupo) return grupo
   }
   
-  // Buscar en materias para inscribir
   const materia = materiasParaInscribir.find(m => m.codigo === codigoMateria)
   if (materia && materia.grupos) {
     return materia.grupos.find(g => g.codigo === codigoGrupo)

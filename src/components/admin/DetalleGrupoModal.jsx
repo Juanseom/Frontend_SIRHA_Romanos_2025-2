@@ -13,9 +13,9 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
     },
     
     grupo: {
-      nombreCompleto: grupo.nombreCompleto || `${grupo.clase}-1`,  // Ej: "DOSW-1", "1624-1"
-      numeroGrupo: grupo.nombreCompleto?.split('-')[1] || '1',      // Ej: "1", "2"
-      seccion: grupo.seccion || '1-LEC ORDINARIA',
+      nombreCompleto: grupo.nombreCompleto || `${grupo.clase}-1`,  
+      numeroGrupo: grupo.nombreCompleto?.split('-')[1] || '1', 
+      seccion: grupo.seccion || 'LEC ORDINARIA',
       estado: grupo.estado || 'abierto',
       ciclo: grupo.ciclo || '2025-2',
       codigoGrupo: grupo.codigoGrupo || '1234'
@@ -43,13 +43,13 @@ const DetalleGrupoModal = ({ isOpen, onClose, grupo, materias = [] }) => {
         dia: 'Lunes', 
         horario: '14:00-16:00',
         aula: grupo.aula || 'D-309',
-        instructor: grupo.instructor || 'ANDRÉS MARTÍN QUINTERO'
+        instructor: grupo.instructor || 'ANDRÉS MARTÍN CANTOR'
       },
       { 
         dia: 'Miércoles', 
         horario: '14:00-16:00',
         aula: grupo.aula || 'D-309',
-        instructor: grupo.instructor || 'ANDRÉS MARTÍN QUINTERO'
+        instructor: grupo.instructor || 'ANDRÉS MARTÍN CANTOR'
       }
     ]
   }

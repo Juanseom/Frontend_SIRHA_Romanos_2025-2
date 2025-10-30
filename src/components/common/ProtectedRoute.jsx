@@ -4,7 +4,6 @@ const ProtectedRoute = ({ children, allowedRoles }) => {
   const userStr = localStorage.getItem('user')
   
   if (!userStr) {
-    // No hay usuario logueado - redirigir al login
     return <Navigate to="/login" replace />
   }
 
